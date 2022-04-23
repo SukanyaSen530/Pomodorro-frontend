@@ -1,0 +1,73 @@
+@import "../../sass/global";
+
+.home-section {
+  position: relative;
+  padding: 1rem;
+  min-height: 100vh;
+
+  &__content {
+    @include absCenter;
+    width: 60vw;
+  }
+
+  &__btn{
+    position: fixed;
+    right: 4rem;
+    top: 4rem;
+  }
+}
+
+.home-section:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(#a06cd5, 0.3),
+      rgba(#10002b, 0.8)
+    ),
+    url("../../assets/bg.jpeg");
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+}
+
+.features {
+  & > * {
+    flex: 1;
+  }
+
+  gap: 1rem;
+
+  &__steps {
+    background-color: #000000;
+    opacity: 0.6;
+    color: white;
+    padding: 2rem 0 1rem;
+    border-radius: 5px;
+
+    &__num {
+      height: 5rem;
+      width: 5rem;
+      font-size: 2rem;
+      background-color: whitesmoke;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-weight: 500;
+      color: black;
+    }
+
+    &__text {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+}
