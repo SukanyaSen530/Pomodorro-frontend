@@ -1,10 +1,21 @@
 import React from "react";
 import "./home.scss";
 
+import homeImage from "../../assets/home-image.png";
+
 const Home = () => {
+  const googleLogin = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
+
   return (
     <section className="home-section">
       <div className="home-section__content">
+        <img
+          src={homeImage}
+          alt="home_image"
+          className="home-section__content__img"
+        />
         <h1 className="h1">Time and tide wait for none!</h1>
         <div className="features flex t-margin-hg">
           <div className="features__steps">
@@ -29,13 +40,16 @@ const Home = () => {
           </div>
           <div className="features__steps">
             <span className="features__steps__num">5</span>
-            <p className="features__steps__text">Repeat for 2-4 cycles!</p>
+            <p className="features__steps__text">Or take a longer break!</p>
           </div>
         </div>
       </div>
 
-      <button className="btn btn-contained btn-md secondaryLight home-section__btn">
-        Sign In
+      <button
+        className="btn btn-contained btn-md secondaryLight home-section__btn"
+        onClick={googleLogin}
+      >
+        <i className="fa-brands fa-google"></i> Sign In
       </button>
     </section>
   );
