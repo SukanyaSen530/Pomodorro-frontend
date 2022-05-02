@@ -4,20 +4,35 @@
   position: relative;
   padding: 1rem;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__content {
-    @include absCenter;
     width: 60vw;
 
-    &__img{
-      height: 7rem;
+    @include respond(phone) {
+      padding: 10rem 0 2rem;
+      width: 95%;
+    }
+
+    &__img {
+      height: 50vh;
+
+      @include respond(phone) {
+         height: 40vh;
+      }
     }
   }
 
-  &__btn{
+  &__btn {
     position: fixed;
     right: 4rem;
     top: 4rem;
+
+    span{
+      font-size: 2rem;
+    }
   }
 }
 
@@ -30,15 +45,13 @@
   left: 0;
   right: 0;
   background-image: linear-gradient(
-      to bottom left,
-      rgba(#815ac0, 0.4),
-      rgba(#10002b, 0.9)
-    ),
-    url("../../assets/bgImage.jpg");
+    to top,
+    rgba(#61448f, 0.4),
+    rgba(#10002b, 1)
+  );
   opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;
-  // background-position: center;
   overflow-x: hidden;
 }
 
@@ -47,19 +60,27 @@
     flex: 1;
   }
 
-  gap: 1rem;
+  flex-wrap: wrap;
+
+  @include respond(phone) {
+    & > * {
+      flex-basis: 45%;
+    }
+  }
+
+  gap: 2rem;
 
   &__steps {
     background-color: #000000;
-    opacity: 0.6;
+    opacity: 0.4;
     color: white;
     padding: 2rem 0 1rem;
-    border-radius: 5px;
+    border-radius: 10px;
 
     &__num {
-      height: 5rem;
-      width: 5rem;
-      font-size: 2rem;
+      height: 3rem;
+      width: 3rem;
+      font-size: 1.5rem;
       background-color: whitesmoke;
       display: inline-flex;
       justify-content: center;
