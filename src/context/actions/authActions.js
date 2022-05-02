@@ -1,0 +1,7 @@
+export const authActions = {
+  LOADING: "LOADING",
+  LOAD_USER: "LOAD_USER",
+  ERROR: "AUTH_ERROR",
+  LOAD_USER_PROFILE: "LOAD_USER_PROFILE",
+  LOGOUT: "LOGOUT",
+};
