@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import "./tasks.scss";
 
 import { TaskForm } from "../../components";
+import Layout from "../Layout/Layout";
 
 const initialState = {
   title: "",
@@ -38,23 +39,25 @@ const Tasks = () => {
   // };
 
   return (
-    <section className="tasks-section flex flex-col">
-      <div className="tasks-section__title b-margin-md">
-        <h2 className="h2">Welcome back, Sukanya!</h2>
-        <h4 className="h4">You have 4 tasks for today! All the best!</h4>
-      </div>
-      <div className="tasks-section__content">
-        <div className="flex flex-space-between">
-          <h4 className="h4">Todo-List</h4>
-          <button
-            className="btn-float defaultDark"
-            onClick={() => setShowForm(true)}
-          >
-            +
-          </button>
+    <Layout
+      renderHeader={true}
+      header={
+        <div className="b-margin-md">
+          <h2 className="h2">Welcome back, Sukanya!</h2>
+          <h4 className="h4">You have 4 tasks for today! All the best!</h4>
         </div>
-        <div className="tasks-section__content__details"></div>
+      }
+    >
+      <div className="flex flex-space-between">
+        <h4 className="h4">Todo-List</h4>
+        <button
+          className="btn-float defaultDark"
+          onClick={() => setShowForm(true)}
+        >
+          +
+        </button>
       </div>
+      <div className="tasks-section__tasks"></div>
 
       <CSSTransition
         in={showForm}
@@ -70,7 +73,7 @@ const Tasks = () => {
           handleSubmit={handleSubmit}
         />
       </CSSTransition>
-    </section>
+    </Layout>
   );
 };
 
