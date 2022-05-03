@@ -50,7 +50,7 @@ const Tasks = () => {
     } else {
       updateTask(taskData, taskDispatch);
       setOperationType(false);
-      setShowForm(false);
+      handleClose();
     }
   };
 
@@ -106,7 +106,7 @@ const Tasks = () => {
         </div>
       }
     >
-      <div className="flex flex-space-between">
+      <div className="flex flex-space-between b-margin-md">
         <h4 className="h4">Todo-List</h4>
         <button
           className="btn-float defaultDark"
