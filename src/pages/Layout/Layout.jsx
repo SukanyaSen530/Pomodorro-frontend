@@ -7,6 +7,7 @@ const Layout = ({ renderHeader = false, header, children }) => {
         <div className="layout__header b-margin-md"> {header} </div>
       ) : null}
       <div className="layout__body">{children}</div>
+      {/* <button className="btn">Logout</button> */}
     </section>
   );
 };
