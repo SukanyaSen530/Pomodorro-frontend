@@ -15,7 +15,12 @@ const authReducer = (state, action) => {
     case authActions.LOAD_USER:
       if (payload.token !== "" || !payload.token) {
         window.localStorage.setItem(tokenName, payload.token);
+         window.localStorage.setItem(
+           "pomodorroUsername",
+           payload.user.fullName
+         );
       }
+
       return {
         ...state,
         loading: false,

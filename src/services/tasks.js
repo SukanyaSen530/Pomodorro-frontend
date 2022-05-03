@@ -6,6 +6,7 @@ import { tasksURL } from "./url";
 
 import getConfig from "./config";
 
+
 export const getTasks = async (dispatch) => {
   const config = getConfig();
 
@@ -35,10 +36,7 @@ export const getTask = async (id, dispatch) => {
     const { data, status } = await axios.get(`${tasksURL}/${id}`, config);
 
     if (status === 200) {
-      dispatch({
-        type: tasksActions.LOAD_TASK,
-        payload: data?.task || {},
-      });
+      dispatch({ type: tasksActions.LOAD_TASK, payload: data?.task || {} });
     }
   } catch (e) {
     toast.error(
@@ -52,14 +50,10 @@ export const createTask = async (task, dispatch) => {
   const config = getConfig();
 
   try {
-    dispatch({ type: tasksActions.LOADING });
-    const { data, status } = await axios.post(tasksURL, config, task);
+    const { data, status } = await axios.post(tasksURL, task, config);
 
     if (status === 201) {
-      dispatch({
-        type: tasksActions.CREATE_TASK,
-        payload: data?.task,
-      });
+      dispatch({ type: tasksActions.CREATE_TASK, payload: data?.task });
     }
   } catch (e) {
     toast.error(
@@ -68,22 +62,21 @@ export const createTask = async (task, dispatch) => {
   }
 };
 
-export const updateTask = async (id, updatedTask, dispatch) => {
+export const updateTask = async (updatedTask, dispatch) => {
   const config = getConfig();
 
+  const id = updatedTask._id;
+  delete updatedTask._id;
+
   try {
-    dispatch({ type: tasksActions.LOADING });
     const { data, status } = await axios.put(
       `${tasksURL}/${id}`,
-      config,
-      updatedTask
+      updatedTask,
+      config
     );
 
     if (status === 200) {
-      dispatch({
-        type: tasksActions.UPDATE_TASK,
-        payload: data?.task,
-      });
+      dispatch({ type: tasksActions.UPDATE_TASK, payload: data?.task });
     }
   } catch (e) {
     toast.error(
@@ -96,14 +89,10 @@ export const deleteTask = async (id, dispatch) => {
   const config = getConfig();
 
   try {
-    dispatch({ type: tasksActions.LOADING });
     const { data, status } = await axios.delete(`${tasksURL}/${id}`, config);
 
     if (status === 200) {
-      dispatch({
-        type: tasksActions.UPDATE_TASK,
-        payload: data?.id,
-      });
+      dispatch({ type: tasksActions.DELETE_TASK, payload: data?.id });
     }
   } catch (e) {
     toast.error(
@@ -116,12 +105,11 @@ export const toggleTaskCompletion = async (id, dispatch) => {
   const config = getConfig();
 
   try {
-    dispatch({ type: tasksActions.LOADING });
     const { data, status } = await axios.patch(`${tasksURL}/${id}`, config);
 
     if (status === 200) {
       dispatch({
-        type: tasksActions.UPDATE_TASK,
+        type: tasksActions.TOGGLE_COMPLETION_TASK,
         payload: data?.id,
       });
     }

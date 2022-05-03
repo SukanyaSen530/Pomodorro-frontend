@@ -17,7 +17,7 @@ const taskReducer = (state, action) => {
       return { ...state, task: payload };
 
     case tasksActions.CREATE_TASK: {
-      return { ...state, tasks: { ...state.tasks, payload } };
+      return { ...state, tasks: [...state.tasks, { ...payload }] };
     }
 
     case tasksActions.UPDATE_TASK: {

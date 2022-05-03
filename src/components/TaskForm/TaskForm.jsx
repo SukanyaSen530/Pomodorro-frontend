@@ -2,7 +2,14 @@ import { Modal, InputField } from "../";
 
 import "./task-form.scss";
 
-const TaskForm = ({ open, onClose, taskData, handleChange, handleSubmit }) => {
+const TaskForm = ({
+  open,
+  onClose,
+  type,
+  taskData,
+  handleChange,
+  handleSubmit,
+}) => {
   return (
     <Modal open={open} onClose={onClose}>
       <form onSubmit={handleSubmit} className="task-form">
@@ -61,7 +68,7 @@ const TaskForm = ({ open, onClose, taskData, handleChange, handleSubmit }) => {
             Cancel
           </button>
           <button type="submit" className="btn btn-contained defaultDark">
-            Add
+            {!type ? "Add" : "Update"}
           </button>
         </div>
       </form>

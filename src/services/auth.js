@@ -6,8 +6,6 @@ import { authURL } from "./url";
 
 // Auth
 export const loginUser = async (userData, dispatch) => {
-  console.log(authURL);
-
   try {
     dispatch({ type: authActions.LOADING });
     const { status, data } = await axios.post(`${authURL}signin`, userData);

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import "./tasks.scss";
 
-import { TaskForm } from "../../components";
+import { TaskCard, TaskForm } from "../../components";
 import Layout from "../Layout/Layout";
+import { useTaskContext } from "../../context";
+
+import { getTasks, createTask, updateTask, deleteTask } from "../../services";
 
 const initialState = {
   title: "",
@@ -15,7 +18,17 @@ const initialState = {
 };
 
 const Tasks = () => {
+  const {
+    taskState: { loading, error, tasks },
+    taskDispatch,
+  } = useTaskContext();
+
+  useEffect(() => {
+    if (tasks?.length === 0) getTasks(taskDispatch);
+  }, [taskDispatch]);
+
   const [showForm, setShowForm] = useState(false);
+  const [operationType, setOperationType] = useState(false);
 
   const handleClose = () => {
     setShowForm((val) => !val);
@@ -24,27 +37,72 @@ const Tasks = () => {
 
   const [taskData, setTaskData] = useState({ ...initialState });
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) =>
     setTaskData((prevVal) => ({ ...prevVal, [name]: value }));
-    console.log(taskData);
-  };
+
+  //Create a task
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!operationType) {
+      createTask(taskData, taskDispatch);
+      handleClose();
+    } else {
+      updateTask(taskData, taskDispatch);
+      setOperationType(false);
+      setShowForm(false);
+    }
   };
 
-  //Edit a task
-  // const editTask = (task) => {
-  //   setTaskData({ ...task });
-  //   handleForm();
-  // };
+  //Delete a task
+  const handleDelete = (id) => deleteTask(id, taskDispatch);
+
+  //Update a task
+  const handleUpdate = (task) => {
+    setTaskData({ ...task });
+    setShowForm(true);
+    setOperationType(true);
+  };
+
+  //Tasks
+  let content = null;
+
+  if (loading) {
+    content = <div>Loading...</div>;
+  } else if (!loading && error) {
+    content = <div>{error}</div>;
+  } else if (tasks.length === 0) {
+    content = <div>Empty!</div>;
+  } else {
+    content = (
+      <div>
+        {tasks.map((task) => (
+          <TaskCard
+            key={task._id}
+            task={task}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <Layout
       renderHeader={true}
       header={
         <div className="b-margin-md">
-          <h2 className="h2">Welcome back, Sukanya!</h2>
-          <h4 className="h4">You have 4 tasks for today! All the best!</h4>
+          <h2 className="h2 b-margin-sm">
+            {`Welcome back, ${window.localStorage.getItem(
+              "pomodorroUsername"
+            )}!`}
+          </h2>
+          <h4 className="h4">
+            {tasks.length === 0
+              ? "You don't have any task added, add some! 🚀"
+              : `You have ${tasks.length} tasks for today! All the best!`}
+          </h4>
         </div>
       }
     >
@@ -57,7 +115,7 @@ const Tasks = () => {
           +
         </button>
       </div>
-      <div className="tasks-section__tasks"></div>
+      <div className="tasks-section__tasks">{content}</div>
 
       <CSSTransition
         in={showForm}
@@ -68,6 +126,7 @@ const Tasks = () => {
         <TaskForm
           open={showForm}
           onClose={handleClose}
+          type={operationType}
           taskData={taskData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}

@@ -1,14 +1,17 @@
 import { tokenName } from "../context/providers/AuthProvider";
 
 const getConfig = () => {
-  const encodedToken = localStorage.getItem(`${tokenName}`);
+  const token = localStorage.getItem(`${tokenName}`);
 
-  if (encodedToken)
+  if (token)
     return {
       headers: {
-        authorization: encodedToken,
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     };
-  else return {};
+  else return "";
 };
+
+
 export default getConfig;
