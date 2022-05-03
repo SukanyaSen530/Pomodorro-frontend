@@ -18,8 +18,10 @@ html {
   @include respond(tab-port) {
     font-size: 50%;  /* 8px */
   }
-}
 
-body {
   box-sizing: border-box;
 }
+
+// body {
+  
+// }

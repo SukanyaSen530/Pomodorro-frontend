@@ -7,6 +7,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body{
+   background-image: linear-gradient(
+    to bottom right,
+    rgba(#61448f, 0.5),
+    rgba(#d2b7e5, 1)
+  );
+}
+
 
 :root {
   --darkBgColor: #303030;
