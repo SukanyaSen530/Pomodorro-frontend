@@ -2,16 +2,16 @@
 
 .layout {
   min-height: 100vh;
-  padding: 1rem 10rem 0;
+  padding: 1rem 8rem 0;
   text-align: left;
   background-image: linear-gradient(
-    to bottom right,
-    rgba(#61448f, 0.5),
-    rgba(#d2b7e5, 1)
+    to top,
+    rgba(#61448f, 1),
+    rgba(#d2b7e5, 0.7)
   );
 
   &__header {
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 
   &__body {

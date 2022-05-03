@@ -1,6 +1,6 @@
 import { tokenName } from "../providers/AuthProvider";
 
-import { authActions } from "../actions/authActions";
+import { authActions } from "../";
 
 const authReducer = (state, action) => {
   const { type, payload } = action;

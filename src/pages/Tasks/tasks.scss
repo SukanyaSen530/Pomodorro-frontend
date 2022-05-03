@@ -1,7 +1,9 @@
 @import "../../sass/global";
 
 .tasks-section {
-  
+  &__tasks{
+    margin: 1rem 4rem;
+  }
 }
 
 .modal-enter .modal-content {
