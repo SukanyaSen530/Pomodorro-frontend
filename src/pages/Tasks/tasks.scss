@@ -1,7 +1,6 @@
 @import "../../sass/global";
 
 .tasks-section {
- 
   min-height: 100vh;
   padding: 1rem 10rem 0;
   text-align: left;
@@ -17,8 +16,29 @@
     flex: 1;
     padding: 3rem;
 
-    &__details{
-        height: 100%;
+    &__details {
+      height: 100%;
     }
   }
+}
+
+.modal-enter .modal-content {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-enter-active .modal-content {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.modal-exit .modal-content {
+  opacity: 1;
+}
+
+.modal-exit-active .modal-content {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s;
 }
