@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context";
 
 const PreventedRoutes = ({ children }) => {
@@ -8,11 +8,8 @@ const PreventedRoutes = ({ children }) => {
     },
   } = useAuthContext();
 
-  const location = useLocation();
-  const pathName = location?.state?.from?.pathname || "/tasks";
-
   if (token) {
-    return <Navigate to={pathName} state={{ from: location }} replace />;
+    return <Navigate to="/tasks" />;
   }
 
   return children;

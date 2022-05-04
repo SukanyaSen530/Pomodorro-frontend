@@ -1,7 +1,7 @@
 @import "../../sass/global";
 
 .tasks-section {
-  &__tasks{
+  &__tasks {
     margin: 1rem 4rem;
   }
 }
@@ -26,3 +26,12 @@
   transform: scale(0.8);
   transition: all 0.3s;
 }
+
+ .loader-img {
+    height: 10rem;
+  }
+
+  .error{
+    font-size: 2rem;
+    color: red;
+  }

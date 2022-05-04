@@ -26,9 +26,14 @@
     flex: 1;
     padding: 1rem;
     border-radius: 5px;
-    background-color: whitesmoke;
+    background-color: #eeeded;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+
+    &.done{
+      text-decoration: line-through;
+      background-color: #e2d1ef ;
+    }
 
     &:hover{
       background-color: var(--defaultLight);
