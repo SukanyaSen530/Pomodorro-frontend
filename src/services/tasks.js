@@ -101,11 +101,10 @@ export const deleteTask = async (id, dispatch) => {
   }
 };
 
-export const toggleTaskCompletion = async (id, dispatch) => {
+export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
   const config = getConfig();
 
-  console.log(config);
-
+  setCheckLoading(true);
   try {
     const { data, status } = await axios.put(
       `${tasksURL}/completion/${id}`,
@@ -114,12 +113,14 @@ export const toggleTaskCompletion = async (id, dispatch) => {
     );
 
     if (status === 200) {
+      setCheckLoading(false);
       dispatch({
         type: tasksActions.TOGGLE_COMPLETION_TASK,
         payload: data?.id,
       });
     }
   } catch (e) {
+    setCheckLoading(false);
     toast.error(
       e?.response?.data?.message ||
         "Unable to update the completion status of task at the moment!"

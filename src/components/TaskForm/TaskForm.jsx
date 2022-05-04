@@ -19,7 +19,7 @@ const TaskForm = ({
           required
           autoFocus
           onChange={handleChange}
-          label="Title"
+          labelName="Title"
           name="title"
         />
         <InputField
@@ -27,7 +27,7 @@ const TaskForm = ({
           value={taskData.description}
           onChange={handleChange}
           required
-          label="Description"
+          labelName="Description"
           placeholder="Description"
           name="description"
           rows={4}
@@ -36,7 +36,7 @@ const TaskForm = ({
           type="number"
           required
           value={taskData.workDuration}
-          label="Work Duration"
+          labelName="Work Duration"
           name="workDuration"
           onChange={handleChange}
           min={1}
@@ -47,7 +47,7 @@ const TaskForm = ({
           required
           value={taskData.shortBreakDuration}
           onChange={handleChange}
-          label="Short Break"
+          labelName="Short Break"
           name="shortBreakDuration"
           min={1}
           max={45}
@@ -57,7 +57,7 @@ const TaskForm = ({
           required
           value={taskData.longBreakDuration}
           onChange={handleChange}
-          label="Long Break"
+          labelName="Long Break"
           name="longBreakDuration"
           min={1}
           max={45}

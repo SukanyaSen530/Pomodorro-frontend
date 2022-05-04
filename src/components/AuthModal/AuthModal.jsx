@@ -68,7 +68,7 @@ const AuthModal = ({ open, onClose }) => {
       <form onSubmit={(e) => handleAuth(e)}>
         <InputField
           type="email"
-          label="Email"
+          labelNameName="Email"
           name="email"
           autoFocus
           required
@@ -77,7 +77,7 @@ const AuthModal = ({ open, onClose }) => {
         />
         <InputField
           type="password"
-          label="Password"
+          labelNameName="Password"
           name="password"
           required
           value={userData.password}
@@ -104,7 +104,7 @@ const AuthModal = ({ open, onClose }) => {
       <form onSubmit={(e) => handleAuth(e)}>
         <InputField
           type="text"
-          label="Full Name"
+          labelName="Full Name"
           name="fullName"
           required
           autoFocus
@@ -114,7 +114,7 @@ const AuthModal = ({ open, onClose }) => {
 
         <InputField
           type="email"
-          label="Email"
+          labelName="Email"
           name="email"
           required
           value={userData.email}
@@ -123,7 +123,7 @@ const AuthModal = ({ open, onClose }) => {
 
         <InputField
           type="password"
-          label="Password"
+          labelName="Password"
           name="password"
           required
           minLength={8}
@@ -133,7 +133,7 @@ const AuthModal = ({ open, onClose }) => {
 
         <InputField
           type="password"
-          label="Confirm Password"
+          labelName="Confirm Password"
           name="confirmPassword"
           required
           minLength={8}

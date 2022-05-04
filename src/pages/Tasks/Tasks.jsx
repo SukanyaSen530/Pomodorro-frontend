@@ -7,6 +7,9 @@ import { TaskCard, TaskForm } from "../../components";
 import Layout from "../Layout/Layout";
 import { useTaskContext } from "../../context";
 
+import loader from "../../assets/loader.gif";
+import emptyImage from "../../assets/empty.png";
+
 import {
   getTasks,
   createTask,
@@ -29,19 +32,20 @@ const Tasks = () => {
     taskDispatch,
   } = useTaskContext();
 
+  const [taskData, setTaskData] = useState({ ...initialState });
+
   useEffect(() => {
     if (tasks?.length === 0) getTasks(taskDispatch);
   }, [taskDispatch]);
 
   const [showForm, setShowForm] = useState(false);
   const [operationType, setOperationType] = useState(false);
+  const [checkLoading, setCheckLoading] = useState(false);
 
   const handleClose = () => {
     setShowForm((val) => !val);
     setTaskData({ ...initialState });
   };
-
-  const [taskData, setTaskData] = useState({ ...initialState });
 
   const handleChange = ({ target: { name, value } }) =>
     setTaskData((prevVal) => ({ ...prevVal, [name]: value }));
@@ -71,17 +75,31 @@ const Tasks = () => {
   };
 
   //UPdate the completion status
-  const handleCheck = (id) => toggleTaskCompletion(id, taskDispatch);
+  const handleCheck = (id) =>
+    toggleTaskCompletion(id, taskDispatch, setCheckLoading);
 
   //Tasks
   let content = null;
 
   if (loading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div className="flex flex-center">
+        <img src={loader} alt="loader" className="loader-img" />
+      </div>
+    );
   } else if (!loading && error) {
-    content = <div>{error}</div>;
+    content = (
+      <div className="flex flex-center">
+        <p className="error">{error}</p>
+      </div>
+    );
   } else if (tasks.length === 0) {
-    content = <div>Empty!</div>;
+    content = (
+      <div className="flex flex-col gap-md flex-center">
+        <img src={emptyImage} alt="empty_image" className="loader-img" />
+        <p>Task list is empty!</p>
+      </div>
+    );
   } else {
     content = (
       <div>
@@ -89,6 +107,7 @@ const Tasks = () => {
           <TaskCard
             key={task._id}
             task={task}
+            checkLoading={checkLoading}
             handleDelete={handleDelete}
             handleUpdate={handleUpdate}
             handleCheck={handleCheck}

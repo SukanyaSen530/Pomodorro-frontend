@@ -6,7 +6,13 @@ import { MdDelete } from "react-icons/md";
 import "./task-card.scss";
 
 
-const TaskCard = ({ task, handleUpdate, handleDelete, handleCheck }) => {
+const TaskCard = ({
+  task,
+  checkLoading,
+  handleUpdate,
+  handleDelete,
+  handleCheck,
+}) => {
   const { _id, isDone, title } = task;
 
   return (
@@ -16,6 +22,7 @@ const TaskCard = ({ task, handleUpdate, handleDelete, handleCheck }) => {
         className="task-card__checkbox"
         checked={isDone}
         onChange={() => handleCheck(_id)}
+        disabled={checkLoading}
       />
       <div
         className={`task-card__details flex flex-space-between ${

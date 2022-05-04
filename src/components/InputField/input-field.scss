@@ -2,9 +2,16 @@
 
 .input-group-new {
   width: 100%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   display: block;
   position: relative;
+
+  &__label{
+    margin: 0 1rem ;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: gray;
+  }
 
   &__input {
     font-family: inherit;
@@ -23,7 +30,7 @@
     }
   }
 
-  &__input + &__focus-border {
+  &__input ~ &__focus-border {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -33,10 +40,12 @@
     transition: 0.4s;
   }
 
-  &__input:focus + &__focus-border {
+  &__input:focus ~ &__focus-border {
     width: 100%;
     transition: 0.4s;
   }
+
+ 
 
   &__show-pass {
     position: absolute;
