@@ -36,6 +36,7 @@ const authReducer = (state, action) => {
 
     case authActions.LOGOUT: {
       window.localStorage.removeItem(tokenName);
+      window.localStorage.removeItem("pomodorroUsername");
 
       return {
         ...state,

@@ -1,5 +1,5 @@
 
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context";
 
 const ProtectedRoutes = ({ children }) => {
@@ -9,10 +9,8 @@ const ProtectedRoutes = ({ children }) => {
     },
   } = useAuthContext();
 
-  let location = useLocation();
-
   if (!token) {
-    return <Navigate to="/" replace state={{ from: location }} />;
+    return <Navigate to="/" />;
   }
 
   return children;
