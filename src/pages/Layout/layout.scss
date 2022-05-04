@@ -27,6 +27,17 @@
     position: fixed;
     right: 6rem;
     top: 4rem;
+
+    &__menu-trigger {
+    text-decoration: none;
+    color: var(--color-white);
+    overflow: hidden;
+    font-family: inherit;
+    background-image: -webkit-linear-gradient(rgb(162, 162, 162) 0%, black 100%);
+    background-image: linear-gradient(rgb(162, 162, 162) 0%, black 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+    }
   }
 }
 
@@ -49,7 +60,7 @@
     cursor: pointer;
     transition: all 0.2s;
 
-    &:hover{
+    &:hover {
       background-color: #e4e4e4;
       color: black;
     }

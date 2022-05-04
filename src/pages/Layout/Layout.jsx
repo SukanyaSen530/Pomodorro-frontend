@@ -5,10 +5,16 @@ import { authActions, useAuthContext } from "../../context";
 
 import "./layout.scss";
 
+import getUserName from "../../utils/getUserName";
+
 const Layout = ({ renderHeader = false, header, children }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const domNode = useClickOutside(() => setOpenMenu(false));
   const { authDispatch } = useAuthContext();
+
+  const userName = getUserName(
+    window.localStorage.getItem("pomodorroUsername")
+  );
 
   return (
     <section className="layout flex flex-col">
@@ -22,10 +28,10 @@ const Layout = ({ renderHeader = false, header, children }) => {
         ref={domNode}
       >
         <button
-          className="btn btn-icon secondaryLight btn-lg menu-trigger"
+          className="btn btn-icon btn-lg layout__user-settings__menu-trigger"
           onClick={() => setOpenMenu((val) => !val)}
         >
-          <i className="fa-solid fa-user-gear"></i>
+          {userName}
         </button>
 
         <div className={`menu ${openMenu ? "active" : ""}`}>
