@@ -5,13 +5,23 @@ import { MdDelete } from "react-icons/md";
 
 import "./task-card.scss";
 
-const TaskCard = ({ task, handleUpdate, handleDelete }) => {
-  const { _id, title } = task;
+
+const TaskCard = ({ task, handleUpdate, handleDelete, handleCheck }) => {
+  const { _id, isDone, title } = task;
 
   return (
     <article className="task-card flex gap-md flex-center-y">
-      <input type="checkbox" className="task-card__checkbox" />
-      <div className="task-card__details flex flex-space-between">
+      <input
+        type="checkbox"
+        className="task-card__checkbox"
+        checked={isDone}
+        onChange={() => handleCheck(_id)}
+      />
+      <div
+        className={`task-card__details flex flex-space-between ${
+          isDone ? "done" : null
+        }`}
+      >
         <p>{title}</p>
         <div>
           <RiEditCircleFill

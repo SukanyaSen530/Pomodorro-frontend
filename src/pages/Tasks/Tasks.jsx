@@ -7,7 +7,13 @@ import { TaskCard, TaskForm } from "../../components";
 import Layout from "../Layout/Layout";
 import { useTaskContext } from "../../context";
 
-import { getTasks, createTask, updateTask, deleteTask } from "../../services";
+import {
+  getTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+  toggleTaskCompletion,
+} from "../../services";
 
 const initialState = {
   title: "",
@@ -64,6 +70,9 @@ const Tasks = () => {
     setOperationType(true);
   };
 
+  //UPdate the completion status
+  const handleCheck = (id) => toggleTaskCompletion(id, taskDispatch);
+
   //Tasks
   let content = null;
 
@@ -82,6 +91,7 @@ const Tasks = () => {
             task={task}
             handleDelete={handleDelete}
             handleUpdate={handleUpdate}
+            handleCheck={handleCheck}
           />
         ))}
       </div>

@@ -104,8 +104,14 @@ export const deleteTask = async (id, dispatch) => {
 export const toggleTaskCompletion = async (id, dispatch) => {
   const config = getConfig();
 
+  console.log(config);
+
   try {
-    const { data, status } = await axios.patch(`${tasksURL}/${id}`, config);
+    const { data, status } = await axios.put(
+      `${tasksURL}/completion/${id}`,
+      {},
+      config
+    );
 
     if (status === 200) {
       dispatch({

@@ -1,5 +1,12 @@
 import { loginUser, registerUser } from "./auth";
-import { getTasks, getTask, createTask, updateTask, deleteTask } from "./tasks";
+import {
+  getTasks,
+  getTask,
+  createTask,
+  updateTask,
+  deleteTask,
+  toggleTaskCompletion,
+} from "./tasks";
 
 export {
   loginUser,
@@ -9,4 +16,5 @@ export {
   createTask,
   updateTask,
   deleteTask,
+  toggleTaskCompletion,
 };
