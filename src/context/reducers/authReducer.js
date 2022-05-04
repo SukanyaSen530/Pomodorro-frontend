@@ -1,6 +1,6 @@
 import { tokenName } from "../providers/AuthProvider";
 
-import { authActions } from "../actions/authActions";
+import { authActions } from "../";
 
 const authReducer = (state, action) => {
   const { type, payload } = action;
@@ -15,7 +15,12 @@ const authReducer = (state, action) => {
     case authActions.LOAD_USER:
       if (payload.token !== "" || !payload.token) {
         window.localStorage.setItem(tokenName, payload.token);
+         window.localStorage.setItem(
+           "pomodorroUsername",
+           payload.user.fullName
+         );
       }
+
       return {
         ...state,
         loading: false,

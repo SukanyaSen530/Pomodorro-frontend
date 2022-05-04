@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-import { Modal, InputField } from "../";
+import { Modal, InputField } from "..";
 import { useAuthContext } from "../../context";
 
 import { loginUser, registerUser } from "../../services";
 
-import "./auth.scss";
+import "./auth-modal.scss";
 
-const Auth = ({ open, onClose }) => {
+const AuthModal = ({ open, onClose }) => {
   const {
     authState: { loading },
     authDispatch,
@@ -179,4 +179,4 @@ const Auth = ({ open, onClose }) => {
   );
 };
 
-export default Auth;
+export default AuthModal;

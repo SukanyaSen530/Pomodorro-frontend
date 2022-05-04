@@ -1,0 +1,28 @@
+@import "../../sass/global";
+
+.tasks-section {
+  &__tasks{
+    margin: 1rem 4rem;
+  }
+}
+
+.modal-enter .modal-content {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-enter-active .modal-content {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.modal-exit .modal-content {
+  opacity: 1;
+}
+
+.modal-exit-active .modal-content {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s;
+}

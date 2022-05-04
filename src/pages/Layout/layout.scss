@@ -1,0 +1,24 @@
+@import "../../sass/global";
+
+.layout {
+  min-height: 100vh;
+  padding: 1rem 8rem 0;
+  text-align: left;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(#d2b7e5, 0.8),
+    rgba(#10002b, 0.8)
+  );
+
+  &__header {
+    margin-top: 2rem;
+  }
+
+  &__body {
+    background-color: var(--color-white);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    flex: 1;
+    padding: 3rem;
+  }
+}

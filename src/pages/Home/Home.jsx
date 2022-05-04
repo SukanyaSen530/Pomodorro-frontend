@@ -3,7 +3,7 @@ import "./home.scss";
 
 import homeImage from "../../assets/home-image.png";
 
-import { Auth } from "../../components";
+import { AuthModal } from "../../components";
 
 const Home = () => {
   const [showAuth, setShowAuth] = useState(false);
@@ -54,7 +54,7 @@ const Home = () => {
           <i className="fa-solid fa-right-to-bracket"></i> Sign In
         </button>
       </section>
-      {showAuth ? <Auth open={showAuth} onClose={handleAuthForm} /> : null}
+      {showAuth ? <AuthModal open={showAuth} onClose={handleAuthForm} /> : null}
     </>
   );
 };

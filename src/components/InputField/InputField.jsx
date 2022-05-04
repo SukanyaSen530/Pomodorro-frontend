@@ -8,13 +8,23 @@ function InputField({ label, type, value, errorMessage, ...other }) {
 
   return (
     <div className="input-group-new">
-      <input
-        {...other}
-        type={type === "password" ? (showPass ? "text" : "password") : type}
-        className="input-group-new__input"
-        placeholder={label}
-        value={value}
-      />
+      {type === "textarea" ? (
+        <textarea
+          {...other}
+          className="input-group-new__input"
+          placeholder={label}
+          value={value}
+        />
+      ) : (
+        <input
+          {...other}
+          type={type === "password" ? (showPass ? "text" : "password") : type}
+          className="input-group-new__input"
+          placeholder={label}
+          value={value}
+        />
+      )}
+
       <span className="input-group-new__focus-border"></span>
 
       {type === "password" ? (
