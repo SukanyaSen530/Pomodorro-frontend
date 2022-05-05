@@ -1,0 +1,54 @@
+.timer {
+  width: 100%;
+  text-align: center;
+
+  &__tabs {
+    padding: 1rem;
+    background-color: var(--defaultLight);
+    border-radius: 30px;
+    width: 90%;
+    margin: 0 auto;
+
+    &__option {
+      padding: 1rem;
+      font-size: 1.5rem;
+      width: 150px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      border: 2px solid #eee;
+      transition: 0.3s ease-in-out;
+      background: linear-gradient(-180deg, #d2b7e5, #b185db);
+      box-shadow: rgba(0, 0, 0, 0.6) 0 5px 10px;
+
+      &:active {
+        box-shadow: rgba(0, 0, 0, 0.8) 0 2px 5px;
+      }
+
+      &:hover {
+        background: linear-gradient(-180deg, #b185db, #6247aa);
+        color: whitesmoke;
+      }
+
+      &.active {
+        background: linear-gradient(-180deg, #b185db, #322557);
+        color: whitesmoke;
+      }
+    }
+  }
+
+  &__clock {
+    width: fit-content;
+    margin: 3rem auto;
+    font-size: 2rem;
+  }
+
+  &__controls{
+      & > *{
+          margin: 0 1rem ;
+      }
+  }
+}
+

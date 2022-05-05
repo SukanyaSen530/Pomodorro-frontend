@@ -68,7 +68,7 @@ const AuthModal = ({ open, onClose }) => {
       <form onSubmit={(e) => handleAuth(e)}>
         <InputField
           type="email"
-          labelNameName="Email"
+          labelName="Email"
           name="email"
           autoFocus
           required
@@ -77,17 +77,20 @@ const AuthModal = ({ open, onClose }) => {
         />
         <InputField
           type="password"
-          labelNameName="Password"
+          labelName="Password"
           name="password"
           required
           value={userData.password}
           onChange={handleChange}
         />
 
-        <button className="btn btn-contained default block-btn" type="submit">
+        <button
+          className="btn btn-contained default block-btn t-margin-md"
+          type="submit"
+        >
           {loading ? (
             <>
-              <i className="fas fa-cog fa-spin"> </i> <span>Loading...</span>
+              <i className="fas fa-cog fa-spin"> </i> <span>Signing In..</span>
             </>
           ) : (
             "Sign In"
@@ -143,10 +146,10 @@ const AuthModal = ({ open, onClose }) => {
           onChange={handleChange}
         />
 
-        <button className="btn btn-contained default block-btn">
+        <button className="btn btn-contained default block-btn t-margin-md">
           {loading ? (
             <>
-              <i className="fas fa-cog fa-spin"> </i> <span>Loading...</span>
+              <i className="fas fa-cog fa-spin"> </i> <span>Signing Up..</span>
             </>
           ) : (
             "Sign Up"

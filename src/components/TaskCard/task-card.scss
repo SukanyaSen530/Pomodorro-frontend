@@ -9,16 +9,16 @@
   }
 
   &__icon {
-    font-size: 3rem;
+    font-size: 4rem;
     cursor: pointer;
-    margin: 0 1rem; 
+    margin: 0 0.4rem; 
+    transition: 0.3s;
+    padding: 0.2rem;
+    border-radius: 5px;
+    color: #023047;
 
-    &--edit{
-      color: rgb(3, 88, 3);
-    }
-
-     &--delete{
-      color: rgb(153, 19, 19);
+    &:hover{
+      background-color: rgba(white, 0.6);
     }
   }
 
@@ -29,6 +29,8 @@
     background-color: #eeeded;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    color: var(--color-black);
+    align-items: center;
 
     &.done{
       text-decoration: line-through;
