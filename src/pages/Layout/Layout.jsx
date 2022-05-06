@@ -17,11 +17,13 @@ const Layout = ({ renderHeader = false, header, children }) => {
   );
 
   return (
-    <section className="layout flex flex-col">
+    <main className="layout flex flex-col">
       {renderHeader ? (
         <div className="layout__header b-margin-md"> {header} </div>
       ) : null}
-      <div className="layout__body">{children}</div>
+      <div className={`layout__body ${!renderHeader ? "margin-hg" : ""}`}>
+        {children}
+      </div>
 
       <div
         className="layout__user-settings flex flex-col flex-center gap-md"
@@ -46,7 +48,7 @@ const Layout = ({ renderHeader = false, header, children }) => {
           </button>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 

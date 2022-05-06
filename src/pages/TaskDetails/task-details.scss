@@ -1,0 +1,21 @@
+@import "../../sass/global";
+
+.task-details {
+  & > * {
+    flex: 1;
+  }
+
+  &__content {
+    align-self: flex-start;
+
+    &__title {
+      text-transform: capitalize;
+    }
+
+    &__description {
+      color: rgb(106, 106, 106);
+      text-align: justify;
+      padding-right: 2rem;
+    }
+  }
+}

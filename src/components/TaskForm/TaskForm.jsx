@@ -36,7 +36,7 @@ const TaskForm = ({
           type="number"
           required
           value={taskData.workDuration}
-          labelName="Work Duration"
+          labelName="Work Duration (mins)"
           name="workDuration"
           onChange={handleChange}
           min={1}
@@ -47,7 +47,7 @@ const TaskForm = ({
           required
           value={taskData.shortBreakDuration}
           onChange={handleChange}
-          labelName="Short Break"
+          labelName="Short Break (mins)"
           name="shortBreakDuration"
           min={1}
           max={45}
@@ -57,13 +57,13 @@ const TaskForm = ({
           required
           value={taskData.longBreakDuration}
           onChange={handleChange}
-          labelName="Long Break"
+          labelName="Long Break (mins)"
           name="longBreakDuration"
           min={1}
           max={45}
         />
 
-        <div className="flex flex-space-between">
+        <div className="flex flex-space-between t-margin-md">
           <button onClick={onClose} className="btn btn-contained defaultLight">
             Cancel
           </button>

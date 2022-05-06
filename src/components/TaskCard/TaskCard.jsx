@@ -1,10 +1,11 @@
 import React from "react";
 
-import { RiEditCircleFill } from "react-icons/ri";
+import { BiMessageSquareEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 
 import "./task-card.scss";
 
+import { Link } from "react-router-dom";
 
 const TaskCard = ({
   task,
@@ -24,23 +25,30 @@ const TaskCard = ({
         onChange={() => handleCheck(_id)}
         disabled={checkLoading}
       />
-      <div
+      <Link
+        to={`/tasks/${_id}`}
         className={`task-card__details flex flex-space-between ${
           isDone ? "done" : null
         }`}
       >
         <p>{title}</p>
         <div>
-          <RiEditCircleFill
-            onClick={() => handleUpdate(task)}
-            className="task-card__icon task-card__icon--edit"
+          <BiMessageSquareEdit
+            onClick={(e) => {
+              e.preventDefault();
+              handleUpdate(task);
+            }}
+            className="task-card__icon task-card__icon"
           />
           <MdDelete
-            onClick={() => handleDelete(_id)}
-            className="task-card__icon task-card__icon--delete"
+            onClick={(e) => {
+              e.preventDefault();
+              handleDelete(_id);
+            }}
+            className="task-card__icon task-card__icon"
           />
         </div>
-      </div>
+      </Link>
     </article>
   );
 };

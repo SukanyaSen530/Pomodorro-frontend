@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import "./tasks.scss";
@@ -11,7 +11,6 @@ import loader from "../../assets/loader.gif";
 import emptyImage from "../../assets/empty.png";
 
 import {
-  getTasks,
   createTask,
   updateTask,
   deleteTask,
@@ -33,13 +32,9 @@ const Tasks = () => {
   } = useTaskContext();
 
   const [taskData, setTaskData] = useState({ ...initialState });
-
-  useEffect(() => {
-    if (tasks?.length === 0) getTasks(taskDispatch);
-  }, [taskDispatch]);
-
   const [showForm, setShowForm] = useState(false);
   const [operationType, setOperationType] = useState(false);
+
   const [checkLoading, setCheckLoading] = useState(false);
 
   const handleClose = () => {
@@ -135,16 +130,16 @@ const Tasks = () => {
         </div>
       }
     >
-      <div className="flex flex-space-between b-margin-md">
-        <h4 className="h4">Todo-List</h4>
+      <div className="flex flex-space-between">
+        <h4 className="h4">Task-List</h4>
         <button
           className="btn-float defaultDark"
           onClick={() => setShowForm(true)}
         >
-          +
+          <i className="fa-solid fa-plus"></i>
         </button>
       </div>
-      <div className="tasks-section__tasks">{content}</div>
+      <div className="tasks-section__tasks flex-1">{content}</div>
 
       <CSSTransition
         in={showForm}
