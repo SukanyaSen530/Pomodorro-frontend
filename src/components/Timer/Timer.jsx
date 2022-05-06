@@ -17,13 +17,14 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
   useEffect(() => {
     if (!pause) {
       let intervalId = setInterval(() => {
-        if (time >= 0) {
-          setTimer((timer) => timer - 1);
+        if (timer > 0) {
+          setTimer((secs) => secs - 1);
         }
       }, 1000);
       return () => clearInterval(intervalId);
     }
-  }, [timer, pause, time]);
+  }, [timer, pause]);
+
 
   const getTimeRemaining = (secs) => {
     const minutes = Math.floor(secs / 60);
