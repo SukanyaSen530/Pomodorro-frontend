@@ -11,9 +11,26 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
   const [time, setTime] = useState(work * 60);
   const [timer, setTimer] = useState(time);
   const [pause, setPause] = useState(true);
-
+  const [session, setSession] = useState(1);
   const [tabState, setTabState] = useState("work");
 
+  //Get Remaining time for timer to display
+  const getTimeRemaining = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = secs % 60;
+    return `${minutes}m : ${seconds}s`;
+  };
+
+  //Play the timer
+  const play = () => setPause(true);
+
+  const setTimerWithTab = (mode, tab) => {
+    setTime(mode * 60);
+    setTimer(mode * 60);
+    setTabState(tab);
+  };
+
+  //Running the timer
   useEffect(() => {
     if (!pause) {
       let intervalId = setInterval(() => {
@@ -25,31 +42,35 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
     }
   }, [timer, pause]);
 
+  //Toggle Work and short Break mode until session is completed
+  useEffect(() => {
+    if (timer === 0) {
+      if (session < 3) {
+        if (tabState === "work") {
+          setTimerWithTab(shortBreak, "shortBreak");
+          play();
+        } else if (tabState === "shortBreak") {
+          setTimerWithTab(work, "work");
+          play();
+          setSession((session) => session + 1);
+        }
+      }
+      setPause((val) => !val);
+    }
+  }, [timer]);
 
-  const getTimeRemaining = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const seconds = secs % 60;
-    return `${minutes}m : ${seconds}s`;
-  };
+  //Switch to Long break mode once session is comlpeted
+  useEffect(() => {
+    if (session === 3) {
+      setPause((val) => !val);
+      setTimerWithTab(longBreak, "longBreak");
+      setPause((val) => !val);
+    }
+  }, [session]);
 
   useEffect(() => {
     document.title = `${getTimeRemaining(timer)} | 💻`;
   }, [timer]);
-
-  useEffect(() => {
-    if (tabState === "work") {
-      setTime(work * 60);
-      setTimer(work * 60);
-    }
-    if (tabState === "shortBreak") {
-      setTime(shortBreak * 60);
-      setTimer(shortBreak * 60);
-    }
-    if (tabState === "longBreak") {
-      setTime(longBreak * 60);
-      setTimer(longBreak * 60);
-    }
-  }, [tabState, work, shortBreak, longBreak]);
 
   return (
     <div className="timer">
@@ -58,7 +79,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "work" ? "active" : ""
           }`}
-          onClick={() => setTabState("work")}
+          onClick={() => setTimerWithTab(work, "work")}
           disabled={!pause && tabState !== "work"}
         >
           Work
@@ -67,7 +88,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "shortBreak" ? "active" : ""
           }`}
-          onClick={() => setTabState("shortBreak")}
+          onClick={() => setTimerWithTab(shortBreak, "shortBreak")}
           disabled={!pause && tabState !== "shortBreak"}
         >
           Short Break
@@ -76,8 +97,8 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "longBreak" ? "active" : ""
           }`}
-          onClick={() => setTabState("longBreak")}
-          disabled={!pause && tabState !== "longBreak"}
+          onClick={() => setTimerWithTab(longBreak, "longBreak")}
+          disabled={(!pause && tabState !== "longBreak") || session !== 3}
         >
           Long Break
         </button>
@@ -89,7 +110,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           value={timer}
           maxValue={time}
           minValue={0}
-          text={getTimeRemaining(timer)}
+          // text={getTimeRemaining(timer)}
           styles={buildStyles({
             rotation: 0.25,
             textSize: "1rem",
@@ -98,7 +119,10 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             trailColor: "#d6d6d6",
             pathTransitionDuration: 0.05,
           })}
-        ></CircularProgressbarWithChildren>
+        >
+          <p>{getTimeRemaining(timer)}</p>
+          <p>{session < 3 ? session : session - 1} of 2 sessions</p>
+        </CircularProgressbarWithChildren>
       </div>
 
       <div className="timer__controls">
@@ -117,6 +141,15 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className="btn btn-icon defaultLight"
         >
           <i class="fa-solid fa-rotate"></i>
+        </button>
+        <button
+          onClick={() => {
+            setSession(1);
+            setTimerWithTab(work, "work");
+          }}
+          className="btn btn-contained btn-sm default"
+        >
+          Reset Session
         </button>
       </div>
     </div>

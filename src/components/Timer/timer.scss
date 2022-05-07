@@ -48,7 +48,10 @@
   &__clock {
     width: fit-content;
     margin: 3rem auto;
-    font-size: 2rem;
+    
+     p{
+       font-size: 2rem;
+     }
   }
 
   &__controls {
