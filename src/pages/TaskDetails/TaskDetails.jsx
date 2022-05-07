@@ -56,7 +56,6 @@ function TaskDetails() {
     if (JSON.stringify(updatedTags) === JSON.stringify(currentTask.tags)) {
       toast.info("Nothing to update!");
     } else {
-      console.log(updatedTags);
       updateTags(currentTask._id, updatedTags, taskDispatch, setTagsLoading);
     }
   };

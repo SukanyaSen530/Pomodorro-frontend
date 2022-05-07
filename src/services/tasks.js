@@ -144,7 +144,7 @@ export const updateTags = async (id, tags, dispatch, setTagsLoading) => {
       setTagsLoading(false);
       console.log("data", data);
       dispatch({
-        type: tasksActions.TOGGLE_COMPLETION_TASK,
+        type: tasksActions.UPDATE_TAGS,
         payload: data?.task,
       });
     }
