@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+
 import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+import useSound from "use-sound";
+import alarm from "../../assets/audio/audio.mp3";
 
 import "./timer.scss";
 
@@ -14,6 +18,8 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
   const [session, setSession] = useState(1);
   const [tabState, setTabState] = useState("work");
 
+  const [play] = useSound(alarm);
+
   //Get Remaining time for timer to display
   const getTimeRemaining = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -22,7 +28,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
   };
 
   //Play the timer
-  const play = () => setPause(true);
+  const playTimer = () => setPause(true);
 
   const setTimerWithTab = (mode, tab) => {
     setTime(mode * 60);
@@ -48,16 +54,16 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
       if (session < 3) {
         if (tabState === "work") {
           setTimerWithTab(shortBreak, "shortBreak");
-          play();
+          playTimer();
         } else if (tabState === "shortBreak") {
           setTimerWithTab(work, "work");
-          play();
+          playTimer();
           setSession((session) => session + 1);
         }
       }
       setPause((val) => !val);
+      play();
     }
-    //es
   }, [timer]);
 
   //Switch to Long break mode once session is comlpeted
