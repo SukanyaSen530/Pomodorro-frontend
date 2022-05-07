@@ -7,8 +7,8 @@ import { TaskCard, TaskForm } from "../../components";
 import Layout from "../Layout/Layout";
 import { useTaskContext } from "../../context";
 
-import loader from "../../assets/loader.gif";
-import emptyImage from "../../assets/empty.png";
+import loader from "../../assets/images/loader.gif";
+import emptyImage from "../../assets/images/empty.png";
 
 import {
   createTask,

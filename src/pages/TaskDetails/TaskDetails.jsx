@@ -4,7 +4,7 @@ import Layout from "../Layout/Layout";
 import "./task-details.scss";
 import { useTaskContext } from "../../context";
 
-import loader from "../../assets/loader.gif";
+import loader from "../../assets/images/loader.gif";
 
 import { Timer } from "../../components";
 

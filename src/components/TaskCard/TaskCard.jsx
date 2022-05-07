@@ -1,10 +1,3 @@
-import React from "react";
-
-import { BiMessageSquareEdit } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
-import { CgMenuMotion } from "react-icons/cg";
-import { IoIosSquare } from "react-icons/io";
-
 import "./task-card.scss";
 
 import { Link } from "react-router-dom";

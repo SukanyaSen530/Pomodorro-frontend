@@ -57,6 +57,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
       }
       setPause((val) => !val);
     }
+    //es
   }, [timer]);
 
   //Switch to Long break mode once session is comlpeted
@@ -110,12 +111,10 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           value={timer}
           maxValue={time}
           minValue={0}
-          // text={getTimeRemaining(timer)}
           styles={buildStyles({
             rotation: 0.25,
             textSize: "1rem",
             pathColor: `#b185db`,
-            textColor: "#000",
             trailColor: "#d6d6d6",
             pathTransitionDuration: 0.05,
           })}
