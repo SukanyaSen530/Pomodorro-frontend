@@ -39,7 +39,7 @@
       }
 
       &.active:enabled {
-        background: linear-gradient(-180deg, #b185db, #322557);
+        background: linear-gradient(-180deg, #b185db, #34265d);
         color: whitesmoke;
       }
     }
@@ -51,6 +51,8 @@
     
      p{
        font-size: 2rem;
+       color: rgb(109, 109, 109);
+       font-weight: 500;
      }
   }
 

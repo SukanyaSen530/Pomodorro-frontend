@@ -70,14 +70,12 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
       setPause((val) => !val);
       play();
     }
+    // eslint-disable-next-line
   }, [timer]);
 
   //Switch to Long break mode once session is comlpeted
   useEffect(() => {
-    if (session === 3) {
-      setPause((val) => !val);
-      setTimerWithTab(longBreak, "longBreak");
-    }
+    if (session === 3) setTimerWithTab(longBreak, "longBreak");
   }, [session, longBreak]);
 
   useEffect(() => {
@@ -127,7 +125,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           styles={buildStyles({
             rotation: 0.25,
             textSize: "1rem",
-            pathColor: `#b185db`,
+            pathColor: `#6247aa`,
             trailColor: "#d6d6d6",
             pathTransitionDuration: 0.05,
           })}
@@ -143,16 +141,16 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className="btn btn-icon secondaryLight"
         >
           {pause ? (
-            <i class="fa-solid fa-play"></i>
+            <i className="fa-solid fa-play"></i>
           ) : (
-            <i class="fa-solid fa-pause"></i>
+            <i className="fa-solid fa-pause"></i>
           )}
         </button>
         <button
           onClick={() => setTimer(time)}
           className="btn btn-icon defaultLight"
         >
-          <i class="fa-solid fa-rotate"></i>
+          <i className="fa-solid fa-rotate"></i>
         </button>
         <button
           onClick={() => {

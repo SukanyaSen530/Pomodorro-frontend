@@ -128,3 +128,30 @@ export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
   }
 };
 
+
+export const updateTags = async (id, tags, dispatch, setTagsLoading) => {
+  const config = getConfig();
+
+  setTagsLoading(true);
+  try {
+    const { data, status } = await axios.put(
+      `${tasksURL}/tags/${id}`,
+      { tags },
+      config
+    );
+
+    if (status === 200) {
+      setTagsLoading(false);
+      console.log("data", data);
+      dispatch({
+        type: tasksActions.TOGGLE_COMPLETION_TASK,
+        payload: data?.task,
+      });
+    }
+  } catch (e) {
+    setTagsLoading(false);
+    toast.error(
+      e?.response?.data?.message || "Unable to update the tags at the moment!"
+    );
+  }
+};

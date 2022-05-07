@@ -7,6 +7,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.btn {
+  font-family: inherit;
+  font-weight: 500;
+}
+
 :root {
   --darkBgColor: #303030;
   --text: whitesmoke;
