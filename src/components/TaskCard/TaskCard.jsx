@@ -1,6 +1,6 @@
-import "./task-card.scss";
-
 import { Link } from "react-router-dom";
+
+import "./task-card.scss";
 
 const TaskCard = ({
   task,
@@ -9,7 +9,7 @@ const TaskCard = ({
   handleDelete,
   handleCheck,
 }) => {
-  const { _id, isDone, title, priority } = task;
+  const { _id, isDone, title, priority, tags } = task;
 
   return (
     <article className="task-card flex gap-md flex-center-y">
@@ -22,11 +22,14 @@ const TaskCard = ({
       />
       <Link
         to={`/tasks/${_id}`}
-        className={`task-card__details flex flex-space-between ${
+        className={`task-card__details flex flex-space-between badge ${
           isDone ? "done" : ""
         }`}
       >
         <p>{title}</p>
+        {tags?.length && (
+          <span className="badge-count secondaryDark">{tags?.length}</span>
+        )}
         <div>
           <i
             class={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}

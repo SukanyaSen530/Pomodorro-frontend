@@ -16,8 +16,9 @@
       border-top-right-radius: 10px;
       border-bottom: 3px solid var(--default);
 
-      &.disable{
+      &.disable {
         pointer-events: none;
+        cursor: not-allowed;
       }
 
       &__input {
@@ -26,12 +27,10 @@
         border: none;
         background: transparent;
 
-        &:focus{
+        &:focus {
           outline: none;
         }
       }
-
-
     }
   }
 
