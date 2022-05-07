@@ -27,9 +27,10 @@ const TaskCard = ({
         }`}
       >
         <p>{title}</p>
-        {tags?.length && (
+
+        {tags?.length !== 0 ? (
           <span className="badge-count secondaryDark">{tags?.length}</span>
-        )}
+        ) : null}
         <div>
           <i
             class={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
