@@ -67,6 +67,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             tabState === "shortBreak" ? "active" : ""
           }`}
           onClick={() => setTabState("shortBreak")}
+          disabled={!pause}
         >
           Short Break
         </button>
@@ -75,6 +76,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             tabState === "longBreak" ? "active" : ""
           }`}
           onClick={() => setTabState("longBreak")}
+          disabled={!pause}
         >
           Long Break
         </button>
@@ -93,6 +95,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             pathColor: `#b185db`,
             textColor: "#000",
             trailColor: "#d6d6d6",
+            pathTransitionDuration: 0.05,
           })}
         ></CircularProgressbarWithChildren>
       </div>

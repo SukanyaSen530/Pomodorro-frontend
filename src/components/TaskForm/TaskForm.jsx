@@ -40,6 +40,7 @@ const TaskForm = ({
             onChange={handleChange}
             className="input-group-new__input"
             name="priority"
+            value={taskData.priority}
           >
             {options.map((option, index) => (
               <option key={index} value={option}>
