@@ -61,9 +61,7 @@ function TaskDetails() {
 
   return (
     <Layout>
-      <section className="task-details flex flex-center flex-1">
-        {content}
-      </section>
+      <section className="task-details flex flex-1">{content}</section>
     </Layout>
   );
 }

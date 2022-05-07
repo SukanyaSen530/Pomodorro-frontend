@@ -2,7 +2,32 @@
 
 .tasks-section {
   &__tasks {
-    margin: 1rem 4rem;
+    margin: 1rem;
+
+    &__container {
+      width: 100%;
+      gap: 3rem;
+      
+      & > * {
+        flex: 1;
+      }
+    }
+  }
+
+  &__skeletal {
+    background: #f3e1ff;
+    background: linear-gradient(110deg, #e3d3ee 8%, #e1d1ec 18%, #d6c8df 33%);
+    border-radius: 5px;
+    height: 4rem;
+    width: 50%;
+    background-size: 200% 100%;
+    animation: 1.7s shine linear infinite;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
   }
 }
 
@@ -27,11 +52,11 @@
   transition: all 0.3s;
 }
 
- .loader-img {
-    height: 10rem;
-  }
+.loader-img {
+  height: 20rem;
+}
 
-  .error{
-    font-size: 2rem;
-    color: red;
-  }
+.error {
+  font-size: 2rem;
+  color: red;
+}

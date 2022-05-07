@@ -2,7 +2,7 @@
 
 .layout {
   min-height: 100vh;
-  padding: 1rem 8rem 0;
+  padding: 2rem 5rem 0;
   text-align: left;
   background-image: linear-gradient(
     to bottom,
@@ -12,7 +12,7 @@
   position: relative;
 
   &__header {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   &__body {
@@ -27,7 +27,7 @@
 
   &__user-settings {
     position: fixed;
-    right: 6rem;
+    right: 5rem;
     top: 4rem;
 
     &__menu-trigger {

@@ -23,6 +23,7 @@ const initialState = {
   workDuration: "",
   shortBreakDuration: "",
   longBreakDuration: "",
+  priority: "low",
 };
 
 const Tasks = () => {
@@ -30,6 +31,9 @@ const Tasks = () => {
     taskState: { loading, error, tasks },
     taskDispatch,
   } = useTaskContext();
+
+  const completedTasks = tasks.filter((task) => task.isDone === true);
+  const unCompletedTasks = tasks.filter((task) => task.isDone === false);
 
   const [taskData, setTaskData] = useState({ ...initialState });
   const [showForm, setShowForm] = useState(false);
@@ -97,17 +101,37 @@ const Tasks = () => {
     );
   } else {
     content = (
-      <div>
-        {tasks.map((task) => (
-          <TaskCard
-            key={task._id}
-            task={task}
-            checkLoading={checkLoading}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-            handleCheck={handleCheck}
-          />
-        ))}
+      <div className="tasks-section__tasks__container flex">
+        {!unCompletedTasks?.length ? null : (
+          <div>
+            <h5 className="h5 b-margin-md">Yet to Complete</h5>
+            {unCompletedTasks.map((task) => (
+              <TaskCard
+                key={task._id}
+                task={task}
+                checkLoading={checkLoading}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+                handleCheck={handleCheck}
+              />
+            ))}
+          </div>
+        )}
+        {!completedTasks?.length ? null : (
+          <div>
+            <h5 className="h5 b-margin-md">Completed</h5>
+            {completedTasks.map((task) => (
+              <TaskCard
+                key={task._id}
+                task={task}
+                checkLoading={checkLoading}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+                handleCheck={handleCheck}
+              />
+            ))}
+          </div>
+        )}
       </div>
     );
   }
@@ -123,9 +147,13 @@ const Tasks = () => {
             )}!`}
           </h2>
           <h4 className="h4">
-            {tasks.length === 0
-              ? "You don't have any task added, add some! 🚀"
-              : `You have ${tasks.length} tasks for today! All the best!`}
+            {loading ? (
+              <p className="tasks-section__skeletal"></p>
+            ) : tasks.length === 0 ? (
+              "You don't have any task added, add some! 🚀"
+            ) : (
+              `You have ${tasks.length} tasks for today! All the best!`
+            )}
           </h4>
         </div>
       }

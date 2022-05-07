@@ -19,7 +19,7 @@ const Layout = ({ renderHeader = false, header, children }) => {
   return (
     <main className="layout flex flex-col">
       {renderHeader ? (
-        <div className="layout__header b-margin-md"> {header} </div>
+        <div className="layout__header b-margin-sm"> {header} </div>
       ) : null}
       <div className={`layout__body ${!renderHeader ? "margin-hg" : ""}`}>
         {children}
