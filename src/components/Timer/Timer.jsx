@@ -27,6 +27,12 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
     return `${minutes}m : ${seconds}s`;
   };
 
+  const getEmoji = (tabState) => {
+    if (tabState === "work") return "💻";
+    else if (tabState === "shortBreak") return "☕";
+    else return "😌";
+  };
+
   //Play the timer
   const playTimer = () => setPause(true);
 
@@ -71,13 +77,14 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
     if (session === 3) {
       setPause((val) => !val);
       setTimerWithTab(longBreak, "longBreak");
-      setPause((val) => !val);
     }
-  }, [session]);
+  }, [session, longBreak]);
 
   useEffect(() => {
-    document.title = `${getTimeRemaining(timer)} | 💻`;
-  }, [timer]);
+    document.title = `${getTimeRemaining(timer)} | ${getEmoji(
+      tabState
+    )} | Pomodorro `;
+  }, [timer, tabState]);
 
   return (
     <div className="timer">
