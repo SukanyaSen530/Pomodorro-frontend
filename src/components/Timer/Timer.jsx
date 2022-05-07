@@ -59,6 +59,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             tabState === "work" ? "active" : ""
           }`}
           onClick={() => setTabState("work")}
+          disabled={!pause && tabState !== "work"}
         >
           Work
         </button>
@@ -67,7 +68,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             tabState === "shortBreak" ? "active" : ""
           }`}
           onClick={() => setTabState("shortBreak")}
-          disabled={!pause}
+          disabled={!pause && tabState !== "shortBreak"}
         >
           Short Break
         </button>
@@ -76,7 +77,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             tabState === "longBreak" ? "active" : ""
           }`}
           onClick={() => setTabState("longBreak")}
-          disabled={!pause}
+          disabled={!pause && tabState !== "longBreak"}
         >
           Long Break
         </button>
