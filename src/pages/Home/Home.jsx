@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./home.scss";
 
-import homeImage from "../../assets/home-image.png";
+import homeImage from "../../assets/images/home-image.png";
 
 import { AuthModal } from "../../components";
 

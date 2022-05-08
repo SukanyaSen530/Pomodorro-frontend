@@ -23,17 +23,23 @@
       background: linear-gradient(-180deg, #d2b7e5, #b185db);
       box-shadow: rgba(0, 0, 0, 0.6) 0 5px 10px;
 
+      &:disabled,
+      &[disabled] {
+        color: black;
+        background: linear-gradient(-180deg, #cccccc, #999999);
+      }
+
       &:active {
         box-shadow: rgba(0, 0, 0, 0.8) 0 2px 5px;
       }
 
-      &:hover {
+      &:hover:enabled {
         background: linear-gradient(-180deg, #b185db, #6247aa);
         color: whitesmoke;
       }
 
-      &.active {
-        background: linear-gradient(-180deg, #b185db, #322557);
+      &.active:enabled {
+        background: linear-gradient(-180deg, #b185db, #34265d);
         color: whitesmoke;
       }
     }
@@ -42,13 +48,17 @@
   &__clock {
     width: fit-content;
     margin: 3rem auto;
-    font-size: 2rem;
+    
+     p{
+       font-size: 2rem;
+       color: rgb(109, 109, 109);
+       font-weight: 500;
+     }
   }
 
-  &__controls{
-      & > *{
-          margin: 0 1rem ;
-      }
+  &__controls {
+    & > * {
+      margin: 0 1rem;
+    }
   }
 }
-

@@ -29,6 +29,15 @@ const taskReducer = (state, action) => {
       };
     }
 
+    case tasksActions.UPDATE_TAGS: {
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task._id === payload._id ? payload : task
+        ),
+      };
+    }
+
     case tasksActions.DELETE_TASK: {
       return {
         ...state,

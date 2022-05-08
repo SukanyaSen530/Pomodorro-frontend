@@ -1,7 +1,10 @@
 .task-form {
-    .btn{
-        font-family: inherit;
-        width: 10rem;
-        font-weight: 500;
-    }
+  .btn {
+    width: 10rem;
+  }
+
+  select {
+    text-transform: capitalize;
+    color: gray;
+  }
 }

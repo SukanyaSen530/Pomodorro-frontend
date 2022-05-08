@@ -6,6 +6,7 @@ import {
   updateTask,
   deleteTask,
   toggleTaskCompletion,
+  updateTags,
 } from "./tasks";
 
 export {
@@ -17,4 +18,5 @@ export {
   updateTask,
   deleteTask,
   toggleTaskCompletion,
+  updateTags,
 };

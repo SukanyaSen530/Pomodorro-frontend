@@ -2,6 +2,8 @@ import { Modal, InputField } from "../";
 
 import "./task-form.scss";
 
+const options = ["low", "medium", "high"];
+
 const TaskForm = ({
   open,
   onClose,
@@ -32,6 +34,22 @@ const TaskForm = ({
           name="description"
           rows={4}
         />
+        <div className="input-group-new">
+          <label className="input-group-new__label">Select Priority</label>
+          <select
+            onChange={handleChange}
+            className="input-group-new__input"
+            name="priority"
+            value={taskData.priority}
+          >
+            {options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          <span className="input-group-new__focus-border"></span>
+        </div>
         <InputField
           type="number"
           required
@@ -39,6 +57,7 @@ const TaskForm = ({
           labelName="Work Duration (mins)"
           name="workDuration"
           onChange={handleChange}
+          placeholder={"1 < m < 45"}
           min={1}
           max={45}
         />
@@ -49,8 +68,9 @@ const TaskForm = ({
           onChange={handleChange}
           labelName="Short Break (mins)"
           name="shortBreakDuration"
+          placeholder={"1 < m < 10"}
           min={1}
-          max={45}
+          max={10}
         />
         <InputField
           type="number"
@@ -58,9 +78,10 @@ const TaskForm = ({
           value={taskData.longBreakDuration}
           onChange={handleChange}
           labelName="Long Break (mins)"
+          placeholder={"1 < m < 30"}
           name="longBreakDuration"
           min={1}
-          max={45}
+          max={30}
         />
 
         <div className="flex flex-space-between t-margin-md">

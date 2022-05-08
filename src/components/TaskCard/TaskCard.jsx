@@ -1,11 +1,6 @@
-import React from "react";
-
-import { BiMessageSquareEdit } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import "./task-card.scss";
-
-import { Link } from "react-router-dom";
 
 const TaskCard = ({
   task,
@@ -14,7 +9,7 @@ const TaskCard = ({
   handleDelete,
   handleCheck,
 }) => {
-  const { _id, isDone, title } = task;
+  const { _id, isDone, title, priority, tags } = task;
 
   return (
     <article className="task-card flex gap-md flex-center-y">
@@ -27,26 +22,42 @@ const TaskCard = ({
       />
       <Link
         to={`/tasks/${_id}`}
-        className={`task-card__details flex flex-space-between ${
-          isDone ? "done" : null
+        className={`task-card__details flex flex-space-between badge ${
+          isDone ? "done" : ""
         }`}
       >
         <p>{title}</p>
+
+        {tags?.length !== 0 ? (
+          <span className="badge-count secondaryDark">{tags?.length}</span>
+        ) : null}
         <div>
-          <BiMessageSquareEdit
+          <i
+            class={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
+          ></i>
+
+          <i
+            class="fa-solid fa-ellipsis-vertical task-card__icon task-card__icon"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          ></i>
+
+          <i
+            className="fa-solid fa-pen-to-square task-card__icon task-card__icon"
             onClick={(e) => {
               e.preventDefault();
               handleUpdate(task);
             }}
-            className="task-card__icon task-card__icon"
-          />
-          <MdDelete
+          ></i>
+
+          <i
             onClick={(e) => {
               e.preventDefault();
               handleDelete(_id);
             }}
-            className="task-card__icon task-card__icon"
-          />
+            className="fa-solid fa-trash task-card__icon task-card__icon"
+          ></i>
         </div>
       </Link>
     </article>

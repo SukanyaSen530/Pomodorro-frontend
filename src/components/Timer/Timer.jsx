@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+
 import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+import useSound from "use-sound";
+import alarm from "../../assets/audio/audio.mp3";
 
 import "./timer.scss";
 
@@ -11,9 +15,34 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
   const [time, setTime] = useState(work * 60);
   const [timer, setTimer] = useState(time);
   const [pause, setPause] = useState(true);
-
+  const [session, setSession] = useState(1);
   const [tabState, setTabState] = useState("work");
 
+  const [play] = useSound(alarm);
+
+  //Get Remaining time for timer to display
+  const getTimeRemaining = (secs) => {
+    const minutes = Math.floor(secs / 60);
+    const seconds = secs % 60;
+    return `${minutes}m : ${seconds}s`;
+  };
+
+  const getEmoji = (tabState) => {
+    if (tabState === "work") return "💻";
+    else if (tabState === "shortBreak") return "☕";
+    else return "😌";
+  };
+
+  //Play the timer
+  const playTimer = () => setPause(true);
+
+  const setTimerWithTab = (mode, tab) => {
+    setTime(mode * 60);
+    setTimer(mode * 60);
+    setTabState(tab);
+  };
+
+  //Running the timer
   useEffect(() => {
     if (!pause) {
       let intervalId = setInterval(() => {
@@ -25,31 +54,35 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
     }
   }, [timer, pause]);
 
-
-  const getTimeRemaining = (secs) => {
-    const minutes = Math.floor(secs / 60);
-    const seconds = secs % 60;
-    return `${minutes}m : ${seconds}s`;
-  };
-
+  //Toggle Work and short Break mode until session is completed
   useEffect(() => {
-    document.title = `${getTimeRemaining(timer)} | 💻`;
+    if (timer === 0) {
+      if (session < 3) {
+        if (tabState === "work") {
+          setTimerWithTab(shortBreak, "shortBreak");
+          playTimer();
+        } else if (tabState === "shortBreak") {
+          setTimerWithTab(work, "work");
+          playTimer();
+          setSession((session) => session + 1);
+        }
+      }
+      setPause((val) => !val);
+      play();
+    }
+    // eslint-disable-next-line
   }, [timer]);
 
+  //Switch to Long break mode once session is comlpeted
   useEffect(() => {
-    if (tabState === "work") {
-      setTime(work * 60);
-      setTimer(work * 60);
-    }
-    if (tabState === "shortBreak") {
-      setTime(shortBreak * 60);
-      setTimer(shortBreak * 60);
-    }
-    if (tabState === "longBreak") {
-      setTime(longBreak * 60);
-      setTimer(longBreak * 60);
-    }
-  }, [tabState, work, shortBreak, longBreak]);
+    if (session === 3) setTimerWithTab(longBreak, "longBreak");
+  }, [session, longBreak]);
+
+  useEffect(() => {
+    document.title = `${getTimeRemaining(timer)} | ${getEmoji(
+      tabState
+    )} | Pomodorro `;
+  }, [timer, tabState]);
 
   return (
     <div className="timer">
@@ -58,7 +91,8 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "work" ? "active" : ""
           }`}
-          onClick={() => setTabState("work")}
+          onClick={() => setTimerWithTab(work, "work")}
+          disabled={!pause && tabState !== "work"}
         >
           Work
         </button>
@@ -66,7 +100,8 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "shortBreak" ? "active" : ""
           }`}
-          onClick={() => setTabState("shortBreak")}
+          onClick={() => setTimerWithTab(shortBreak, "shortBreak")}
+          disabled={!pause && tabState !== "shortBreak"}
         >
           Short Break
         </button>
@@ -74,7 +109,8 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className={`timer__tabs__option ${
             tabState === "longBreak" ? "active" : ""
           }`}
-          onClick={() => setTabState("longBreak")}
+          onClick={() => setTimerWithTab(longBreak, "longBreak")}
+          disabled={(!pause && tabState !== "longBreak") || session !== 3}
         >
           Long Break
         </button>
@@ -86,15 +122,17 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           value={timer}
           maxValue={time}
           minValue={0}
-          text={getTimeRemaining(timer)}
           styles={buildStyles({
             rotation: 0.25,
             textSize: "1rem",
-            pathColor: `#b185db`,
-            textColor: "#000",
+            pathColor: `#6247aa`,
             trailColor: "#d6d6d6",
+            pathTransitionDuration: 0.05,
           })}
-        ></CircularProgressbarWithChildren>
+        >
+          <p>{getTimeRemaining(timer)}</p>
+          <p>{session < 3 ? session : session - 1} of 2 sessions</p>
+        </CircularProgressbarWithChildren>
       </div>
 
       <div className="timer__controls">
@@ -103,16 +141,25 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           className="btn btn-icon secondaryLight"
         >
           {pause ? (
-            <i class="fa-solid fa-play"></i>
+            <i className="fa-solid fa-play"></i>
           ) : (
-            <i class="fa-solid fa-pause"></i>
+            <i className="fa-solid fa-pause"></i>
           )}
         </button>
         <button
           onClick={() => setTimer(time)}
           className="btn btn-icon defaultLight"
         >
-          <i class="fa-solid fa-rotate"></i>
+          <i className="fa-solid fa-rotate"></i>
+        </button>
+        <button
+          onClick={() => {
+            setSession(1);
+            setTimerWithTab(work, "work");
+          }}
+          className="btn btn-contained btn-sm default"
+        >
+          Reset Session
         </button>
       </div>
     </div>
