@@ -3,7 +3,7 @@
   font-size: 3rem;
 
   &__checkbox {
-    accent-color: var(--default);
+    accent-color: var(--dark);
     height: 2rem;
     width: 2rem;
     cursor: pointer;
@@ -42,7 +42,7 @@
     flex: 1;
     padding: 1rem;
     border-radius: 5px;
-    background-color: #eeeded;
+    background-color: white;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     color: var(--color-black);
@@ -50,11 +50,11 @@
 
     &.done {
       text-decoration: line-through;
-      background-color: #ede1f6;
+      // background-color: #ede1f6;
     }
 
     &:hover {
-     background-color: #dec9e9;
+    //  background-color: #dec9e9;
     }
   }
 }

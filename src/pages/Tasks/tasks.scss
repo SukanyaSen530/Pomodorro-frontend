@@ -3,11 +3,10 @@
 .tasks-section {
   &__tasks {
     margin: 1rem;
-
     &__container {
       width: 100%;
       gap: 3rem;
-      
+
       & > * {
         flex: 1;
       }

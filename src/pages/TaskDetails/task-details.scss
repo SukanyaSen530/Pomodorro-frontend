@@ -1,6 +1,8 @@
 @import "../../sass/global";
 
 .task-details {
+  color: var(--text);
+
   & > * {
     flex: 1;
   }
@@ -8,13 +10,17 @@
   &__tags {
     width: 100%;
 
+    &__btn {
+      width: 4rem;
+      height: 4rem;
+      cursor: pointer;
+      font-size: 4rem;
+    }
+
     &__input-container {
       width: 100%;
-      background-color: #eee;
       padding: 1rem;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom: 3px solid var(--default);
+      border-bottom: 3px solid var(--dark);
 
       &.disable {
         pointer-events: none;
@@ -26,6 +32,11 @@
         font-size: 1.7rem;
         border: none;
         background: transparent;
+
+        &::placeholder {
+          color: var(--text);
+          font-weight: 400;
+        }
 
         &:focus {
           outline: none;
@@ -42,9 +53,10 @@
     }
 
     &__description {
-      color: rgb(106, 106, 106);
       text-align: justify;
       padding-right: 2rem;
+      font-size: 1.5rem;
+      font-weight: 400;
     }
   }
 }

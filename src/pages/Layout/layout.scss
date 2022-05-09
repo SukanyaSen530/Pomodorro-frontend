@@ -2,13 +2,9 @@
 
 .layout {
   min-height: 100vh;
-  padding: 2rem 5rem 0;
+  padding: 1rem 5rem 3rem;
   text-align: left;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(#d2b7e5, 1),
-    rgba(#10002b, 0.8)
-  );
+  background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #ac9ce2, #bd9fe2, #cda2e1, #f4a0cc, #ffa5b0, #ffb395, #ffc785);
   position: relative;
 
   &__header {
@@ -16,13 +12,29 @@
   }
 
   &__body {
-    background-color: var(--color-white);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-radius: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 3rem;
+    position: relative;
+
+    & > *{
+      z-index: 5;
+    }
+
+    &::after {
+      content: "";
+      background-color: var(--color-black);
+      opacity: 0.3;
+      filter: blur(2px);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 10px;
+    }
   }
 
   &__user-settings {
@@ -31,19 +43,25 @@
     top: 4rem;
 
     &__menu-trigger {
-    text-decoration: none;
-    color: var(--color-white);
-    overflow: hidden;
-    font-family: inherit;
-    background-image: -webkit-linear-gradient(rgb(137, 137, 137) 0%, rgb(47, 47, 47) 100%);
-    background-image: linear-gradient(rgb(137, 137, 137) 0%, rgb(47,47,47) 100%);
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+      text-decoration: none;
+      color: var(--color-white);
+      overflow: hidden;
+      font-family: inherit;
+      background-image: -webkit-linear-gradient(
+        rgb(137, 137, 137) 0%,
+        rgb(47, 47, 47) 100%
+      );
+      background-image: linear-gradient(
+        rgb(137, 137, 137) 0%,
+        rgb(47, 47, 47) 100%
+      );
+      text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
     }
   }
 }
 
-.flex-1{
+.flex-1 {
   flex: 1;
 }
 
@@ -77,7 +95,6 @@
   }
 }
 
-
-.margin-hg{
+.margin-hg {
   margin-top: 10rem;
 }

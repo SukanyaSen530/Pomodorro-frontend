@@ -44,15 +44,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: linear-gradient(
-    to top,
-    rgba(#d2b7e5, 0.8),
-    rgba(#10002b, 0.8)
-  );
-  opacity: 0.8;
+   background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #ac9ce2, #bd9fe2, #cda2e1, #f4a0cc, #ffa5b0, #ffb395, #ffc785);
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
+  opacity: 0.9;
 }
 
 .features {
@@ -72,7 +68,7 @@
 
   &__steps {
     background-color: #000000;
-    opacity: 0.4;
+    opacity: 0.7;
     color: white;
     padding: 2rem 0 1rem;
     border-radius: 10px;

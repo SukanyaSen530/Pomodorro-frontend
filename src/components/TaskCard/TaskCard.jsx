@@ -37,13 +37,6 @@ const TaskCard = ({
           ></i>
 
           <i
-            class="fa-solid fa-ellipsis-vertical task-card__icon task-card__icon"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          ></i>
-
-          <i
             className="fa-solid fa-pen-to-square task-card__icon task-card__icon"
             onClick={(e) => {
               e.preventDefault();
