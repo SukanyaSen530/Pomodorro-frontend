@@ -49,7 +49,7 @@ const taskReducer = (state, action) => {
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task._id === payload ? { ...task, isDone: !task.isDone } : task
+          task._id === payload._id ? payload : task
         ),
       };
     }

@@ -4,7 +4,21 @@
   min-height: 100vh;
   padding: 1rem 5rem 3rem;
   text-align: left;
-  background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #ac9ce2, #bd9fe2, #cda2e1, #f4a0cc, #ffa5b0, #ffb395, #ffc785);
+  background-image: linear-gradient(
+    to left bottom,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #ac9ce2,
+    #bd9fe2,
+    #cda2e1,
+    #f4a0cc,
+    #ffa5b0,
+    #ffb395,
+    #ffc785
+  );
   position: relative;
 
   &__header {
@@ -16,17 +30,18 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding: 2rem;
     position: relative;
+    color: var(--text);
 
-    & > *{
+    & > * {
       z-index: 5;
     }
 
     &::after {
       content: "";
-      background-color: var(--color-black);
-      opacity: 0.3;
+      background-color: var(--dark);
+      opacity: 0.6;
       filter: blur(2px);
       position: absolute;
       top: 0;
@@ -41,6 +56,7 @@
     position: fixed;
     right: 5rem;
     top: 4rem;
+    z-index: 10;
 
     &__menu-trigger {
       text-decoration: none;

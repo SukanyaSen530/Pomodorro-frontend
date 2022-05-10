@@ -106,6 +106,8 @@ export const deleteTask = async (id, dispatch) => {
 export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
   const config = getConfig();
 
+  console.log("Called", id);
+
   setCheckLoading(true);
   try {
     const { data, status } = await axios.put(
@@ -117,9 +119,10 @@ export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
     if (status === 200) {
       toast.info("Completion status changed successfully!");
       setCheckLoading(false);
+
       dispatch({
         type: tasksActions.TOGGLE_COMPLETION_TASK,
-        payload: data?.id,
+        payload: data?.task,
       });
     }
   } catch (e) {

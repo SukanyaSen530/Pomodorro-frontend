@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./home.scss";
+import { CSSTransition } from "react-transition-group";
 
 import homeImage from "../../assets/images/home-image.png";
 
@@ -54,7 +55,14 @@ const Home = () => {
           <i className="fa-solid fa-right-to-bracket"></i> Sign In
         </button>
       </section>
-      {showAuth ? <AuthModal open={showAuth} onClose={handleAuthForm} /> : null}
+      <CSSTransition
+        in={showAuth}
+        timeout={300}
+        classNames="modal"
+        unmountOnExit
+      >
+        <AuthModal open={showAuth} onClose={handleAuthForm} />
+      </CSSTransition>
     </>
   );
 };
