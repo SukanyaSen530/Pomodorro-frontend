@@ -125,8 +125,10 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
           styles={buildStyles({
             rotation: 0.25,
             textSize: "1rem",
-            pathColor: `#6247aa`,
-            trailColor: "#d6d6d6",
+            pathColor: `${
+              tabState === "work" ? "var(--dark)" : "var(--defaultLight)"
+            }`,
+            trailColor: "var(--text)",
             pathTransitionDuration: 0.05,
           })}
         >
@@ -138,7 +140,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
       <div className="timer__controls">
         <button
           onClick={() => setPause((prevVal) => !prevVal)}
-          className="btn btn-icon secondaryLight"
+          className="btn btn-icon secondaryDark"
         >
           {pause ? (
             <i className="fa-solid fa-play"></i>
@@ -148,7 +150,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
         </button>
         <button
           onClick={() => setTimer(time)}
-          className="btn btn-icon defaultLight"
+          className="btn btn-icon defaultDark"
         >
           <i className="fa-solid fa-rotate"></i>
         </button>
@@ -157,7 +159,7 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             setSession(1);
             setTimerWithTab(work, "work");
           }}
-          className="btn btn-contained btn-sm default"
+          className="btn btn-contained btn-sm defaultDark"
         >
           Reset Session
         </button>

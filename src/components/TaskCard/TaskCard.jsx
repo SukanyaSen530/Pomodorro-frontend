@@ -2,65 +2,61 @@ import { Link } from "react-router-dom";
 
 import "./task-card.scss";
 
-const TaskCard = ({
-  task,
-  checkLoading,
-  handleUpdate,
-  handleDelete,
-  handleCheck,
-}) => {
-  const { _id, isDone, title, priority, tags } = task;
+import { Draggable } from "react-beautiful-dnd";
+
+const TaskCard = ({ id, index, task, handleUpdate, handleDelete }) => {
+  const { isDone, title, priority, tags } = task;
 
   return (
-    <article className="task-card flex gap-md flex-center-y">
-      <input
-        type="checkbox"
-        className="task-card__checkbox"
-        checked={isDone}
-        onChange={() => handleCheck(_id)}
-        disabled={checkLoading}
-      />
-      <Link
-        to={`/tasks/${_id}`}
-        className={`task-card__details flex flex-space-between badge ${
-          isDone ? "done" : ""
-        }`}
-      >
-        <p>{title}</p>
+    <Draggable draggableId={`${id.toString()}`} index={index}>
+      {(provided) => (
+        <Link
+          to={`/tasks/${id}`}
+          className={`task-card flex flex-space-between badge ${
+            isDone ? "done" : ""
+          }`}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          <div className="task-card__text-container">
+            <p className="task-card__title">{title}</p>
 
-        {tags?.length !== 0 ? (
-          <span className="badge-count secondaryDark">{tags?.length}</span>
-        ) : null}
-        <div>
-          <i
-            class={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
-          ></i>
+            {tags.map((tag, index) => (
+              <span className="task-card__tag" key={index}>
+                {tag}
+              </span>
+            ))}
+          </div>
 
-          <i
-            class="fa-solid fa-ellipsis-vertical task-card__icon task-card__icon"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          ></i>
+          {tags?.length !== 0 ? (
+            <span className="badge-count danger">{tags?.length}</span>
+          ) : null}
 
-          <i
-            className="fa-solid fa-pen-to-square task-card__icon task-card__icon"
-            onClick={(e) => {
-              e.preventDefault();
-              handleUpdate(task);
-            }}
-          ></i>
+          <div>
+            <i
+              className={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
+            ></i>
 
-          <i
-            onClick={(e) => {
-              e.preventDefault();
-              handleDelete(_id);
-            }}
-            className="fa-solid fa-trash task-card__icon task-card__icon"
-          ></i>
-        </div>
-      </Link>
-    </article>
+            <i
+              className="fa-solid fa-pen-to-square task-card__icon task-card__icon"
+              onClick={(e) => {
+                e.preventDefault();
+                handleUpdate(task);
+              }}
+            ></i>
+
+            <i
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete(id);
+              }}
+              className="fa-solid fa-trash task-card__icon task-card__icon"
+            ></i>
+          </div>
+        </Link>
+      )}
+    </Draggable>
   );
 };
 

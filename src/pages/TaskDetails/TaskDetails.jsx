@@ -6,6 +6,8 @@ import Layout from "../Layout/Layout";
 import "./task-details.scss";
 import { useTaskContext } from "../../context";
 
+import { IoSaveSharp } from "react-icons/io5";
+
 import loader from "../../assets/images/loader.gif";
 
 import { Chip, Timer } from "../../components";
@@ -97,7 +99,7 @@ function TaskDetails() {
           <div className="task-details__tags">
             <p className="h4">Tags :</p>
             <div
-              className={`task-details__tags__input-container flex flex-1 flex-wrap ${
+              className={`task-details__tags__input-container flex flex-1 flex-wrap gap-md ${
                 tagsLoading ? "disable" : ""
               }`}
             >
@@ -113,19 +115,18 @@ function TaskDetails() {
                 className="task-details__tags__input-container__input"
                 autoFocus
                 onChange={(e) => setNewTag(e.target.value)}
-                placeholder="Add Tag"
+                placeholder="Click enter to add a tag and clck save"
                 value={newTag}
                 maxLength={15}
                 minLength={3}
                 onKeyPress={(e) => handleAddTag(e)}
               />
+
+              <i
+                className="fa-solid fa-square-plus task-details__tags__btn"
+                onClick={handleUpdateTaskWithTags}
+              ></i>
             </div>
-            <button
-              className="btn btn-contained secondaryDark t-margin-sm"
-              onClick={handleUpdateTaskWithTags}
-            >
-              Save
-            </button>
           </div>
         </div>
       </>

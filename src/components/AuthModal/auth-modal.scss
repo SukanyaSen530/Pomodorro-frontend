@@ -48,11 +48,6 @@
   }
 
   .active {
-    background: linear-gradient(
-      to bottom right,
-      rgba(#d2b7e5, 1),
-      rgba(#815ac0, 1)
-    );
-    color: var(--color-white);
+     background: linear-gradient(to left, #d16ba5,  #aa8fd8, #9a9ae1);
   }
 }

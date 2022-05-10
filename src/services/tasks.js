@@ -6,7 +6,6 @@ import { tasksURL } from "./url";
 
 import getConfig from "./config";
 
-
 export const getTasks = async (dispatch) => {
   const config = getConfig();
 
@@ -53,6 +52,7 @@ export const createTask = async (task, dispatch) => {
     const { data, status } = await axios.post(tasksURL, task, config);
 
     if (status === 201) {
+      toast.success("Task added successfully!");
       dispatch({ type: tasksActions.CREATE_TASK, payload: data?.task });
     }
   } catch (e) {
@@ -76,6 +76,7 @@ export const updateTask = async (updatedTask, dispatch) => {
     );
 
     if (status === 200) {
+      toast.success("Task updated successfully!");
       dispatch({ type: tasksActions.UPDATE_TASK, payload: data?.task });
     }
   } catch (e) {
@@ -92,6 +93,7 @@ export const deleteTask = async (id, dispatch) => {
     const { data, status } = await axios.delete(`${tasksURL}/${id}`, config);
 
     if (status === 200) {
+      toast.info("Task deleted successfully!");
       dispatch({ type: tasksActions.DELETE_TASK, payload: data?.id });
     }
   } catch (e) {
@@ -104,6 +106,8 @@ export const deleteTask = async (id, dispatch) => {
 export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
   const config = getConfig();
 
+  console.log("Called", id);
+
   setCheckLoading(true);
   try {
     const { data, status } = await axios.put(
@@ -113,10 +117,12 @@ export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
     );
 
     if (status === 200) {
+      toast.info("Completion status changed successfully!");
       setCheckLoading(false);
+
       dispatch({
         type: tasksActions.TOGGLE_COMPLETION_TASK,
-        payload: data?.id,
+        payload: data?.task,
       });
     }
   } catch (e) {
@@ -127,7 +133,6 @@ export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
     );
   }
 };
-
 
 export const updateTags = async (id, tags, dispatch, setTagsLoading) => {
   const config = getConfig();
@@ -142,7 +147,7 @@ export const updateTags = async (id, tags, dispatch, setTagsLoading) => {
 
     if (status === 200) {
       setTagsLoading(false);
-      console.log("data", data);
+      toast.success("Tags updated successfully!");
       dispatch({
         type: tasksActions.UPDATE_TAGS,
         payload: data?.task,

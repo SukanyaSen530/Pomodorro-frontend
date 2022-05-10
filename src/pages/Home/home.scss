@@ -9,7 +9,7 @@
   justify-content: center;
 
   &__content {
-    width: 60vw;
+    width: 80vw;
 
     @include respond(phone) {
       padding: 10rem 0 2rem;
@@ -20,7 +20,7 @@
       height: 50vh;
 
       @include respond(phone) {
-         height: 40vh;
+        height: 40vh;
       }
     }
   }
@@ -30,7 +30,7 @@
     right: 4rem;
     top: 4rem;
 
-    span{
+    span {
       font-size: 2rem;
     }
   }
@@ -45,54 +45,93 @@
   left: 0;
   right: 0;
   background-image: linear-gradient(
-    to top,
-    rgba(#d2b7e5, 0.8),
-    rgba(#10002b, 0.8)
+    to left bottom,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #ac9ce2,
+    #bd9fe2,
+    #cda2e1,
+    #f4a0cc,
+    #ffa5b0,
+    #ffb395,
+    #ffc785
   );
-  opacity: 0.8;
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
+  opacity: 0.9;
 }
 
-.features {
-  & > * {
-    flex: 1;
-  }
+.features-section {
+  width: 80vw;
+  margin: 5rem auto 1rem;
 
-  flex-wrap: wrap;
+  &__about {
+    text-align: left;
 
-  @include respond(phone) {
-    & > * {
-      flex-basis: 45%;
+    &__list {
+      font-size: 1.7rem;
+      list-style-type: decimal;
+      list-style-position: inside;
+      text-align: justify;
+
+      li {
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
+
+        strong {
+          font-weight: 600;
+          color: rgb(81, 81, 81);
+        }
+      }
     }
   }
 
-  gap: 2rem;
+  &__details {
+    width: 50%;
+    margin: 0 auto;
 
-  &__steps {
-    background-color: #000000;
-    opacity: 0.4;
-    color: white;
-    padding: 2rem 0 1rem;
-    border-radius: 10px;
+    &__card {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 2rem;
+      gap: 3rem;
 
-    &__num {
-      height: 3rem;
-      width: 3rem;
-      font-size: 1.5rem;
-      background-color: whitesmoke;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      font-weight: 500;
-      color: black;
+      &.flex-1 {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
+      &.flex-0 {
+        text-align: left;
+      }
+
+      img {
+        height: 10rem;
+      }
     }
+  }
+}
 
-    &__text {
-      width: 90%;
-      margin: 0 auto;
+.footer {
+  background-color: var(--color-black);
+  color: var(--text);
+  padding: 1rem;
+
+  &__content {
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  &__links {
+    font-size: 3rem;
+
+    a {
+      color: var(--text);
+      margin-left: 2rem;
     }
   }
 }

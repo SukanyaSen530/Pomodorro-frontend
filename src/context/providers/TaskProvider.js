@@ -22,8 +22,7 @@ const TaskProvider = ({ children }) => {
   } = useAuthContext();
 
   useEffect(() => {
-    if (state.tasks?.length === 0 && token) getTasks(dispatch);
-    // eslint-disable-next-line
+    if (token) getTasks(dispatch);
   }, [dispatch, token]);
 
   return (
