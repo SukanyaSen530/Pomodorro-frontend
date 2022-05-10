@@ -40,13 +40,12 @@ const Tasks = () => {
 
   const [completedTasks, setCompletedTasks] = useState([]);
   const [inCompletedTasks, setIncompletedTasks] = useState([]);
+  const [checkLoading, setCheckLoading] = useState(false);
 
   useEffect(() => {
     setCompletedTasks(tasks.filter((task) => task.isDone === true));
     setIncompletedTasks(tasks.filter((task) => task.isDone === false));
   }, [tasks]);
-
-  const [checkLoading, setCheckLoading] = useState(false);
 
   const handleClose = () => {
     setShowForm((val) => !val);
@@ -80,7 +79,7 @@ const Tasks = () => {
     setOperationType(true);
   };
 
-  //UPdate the completion status
+  //Update the completion status
   const handleCheck = async (id) =>
     await toggleTaskCompletion(id, taskDispatch, setCheckLoading);
 
@@ -150,7 +149,11 @@ const Tasks = () => {
   } else {
     content = (
       <div className="tasks-section__tasks__container flex">
-        <Droppable droppableId="incomplete_board">
+        <Droppable
+          droppableId="incomplete_board"
+          // isDropDisabled={checkLoading}
+          key="b1"
+        >
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <h4 className="h4 b-margin-md center-aligned">Yet to Complete</h4>
@@ -170,7 +173,11 @@ const Tasks = () => {
           )}
         </Droppable>
 
-        <Droppable droppableId="completed_board">
+        <Droppable
+          droppableId="completed_board"
+          // isDropDisabled={checkLoading}
+          key="b2"
+        >
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <h4 className="h4 b-margin-md center-aligned">Completed</h4>
@@ -194,28 +201,28 @@ const Tasks = () => {
   }
 
   return (
-    <Layout
-      renderHeader={true}
-      header={
-        <div className="b-margin-md">
-          <h2 className="h2 b-margin-sm">
-            {`Welcome back, ${window.localStorage.getItem(
-              "pomodorroUsername"
-            )}!`}
-          </h2>
-          <h4 className="h4">
-            {loading ? (
-              <p className="tasks-section__skeletal"></p>
-            ) : tasks.length === 0 ? (
-              "You don't have any task added, add some! 🚀"
-            ) : (
-              `You have ${tasks.length} tasks for today! All the best!`
-            )}
-          </h4>
-        </div>
-      }
-    >
-      <DragDropContext onDragEnd={handleDragEnd}>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <Layout
+        renderHeader={true}
+        header={
+          <div className="b-margin-md">
+            <h2 className="h2 b-margin-sm">
+              {`Welcome back, ${window.localStorage.getItem(
+                "pomodorroUsername"
+              )}!`}
+            </h2>
+            <h4 className="h4">
+              {loading ? (
+                <p className="tasks-section__skeletal"></p>
+              ) : tasks.length === 0 ? (
+                "You don't have any task added, add some! 🚀"
+              ) : (
+                `You have ${tasks.length} tasks for today! All the best!`
+              )}
+            </h4>
+          </div>
+        }
+      >
         <div className="flex flex-space-between">
           <h4 className="h4">Task-List</h4>
           <button
@@ -226,24 +233,24 @@ const Tasks = () => {
           </button>
         </div>
         <div className="tasks-section__tasks flex-1">{content}</div>
-      </DragDropContext>
 
-      <CSSTransition
-        in={showForm}
-        timeout={300}
-        classNames="modal"
-        unmountOnExit
-      >
-        <TaskForm
-          open={showForm}
-          onClose={handleClose}
-          type={operationType}
-          taskData={taskData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      </CSSTransition>
-    </Layout>
+        <CSSTransition
+          in={showForm}
+          timeout={300}
+          classNames="modal"
+          unmountOnExit
+        >
+          <TaskForm
+            open={showForm}
+            onClose={handleClose}
+            type={operationType}
+            taskData={taskData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </CSSTransition>
+      </Layout>
+    </DragDropContext>
   );
 };
 

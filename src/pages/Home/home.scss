@@ -9,7 +9,7 @@
   justify-content: center;
 
   &__content {
-    width: 60vw;
+    width: 80vw;
 
     @include respond(phone) {
       padding: 10rem 0 2rem;
@@ -51,44 +51,3 @@
   opacity: 0.9;
 }
 
-.features {
-  & > * {
-    flex: 1;
-  }
-
-  flex-wrap: wrap;
-
-  @include respond(phone) {
-    & > * {
-      flex-basis: 45%;
-    }
-  }
-
-  gap: 2rem;
-
-  &__steps {
-    background-color: var(--color-black);
-    opacity: 0.6;
-    color: var(--color-white);
-    padding: 2rem 0 1rem;
-    border-radius: 10px;
-
-    &__num {
-      height: 3rem;
-      width: 3rem;
-      font-size: 1.5rem;
-      background-color: var(--text);
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      font-weight: 500;
-      color: black;
-    }
-
-    &__text {
-      width: 90%;
-      margin: 0 auto;
-    }
-  }
-}

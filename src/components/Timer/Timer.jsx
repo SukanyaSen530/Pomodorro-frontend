@@ -126,9 +126,9 @@ const Timer = ({ work = 1, shortBreak = 1, longBreak = 1 }) => {
             rotation: 0.25,
             textSize: "1rem",
             pathColor: `${
-              tabState === "work" ? "var(--dark)" : "var(--default)"
+              tabState === "work" ? "var(--dark)" : "var(--defaultLight)"
             }`,
-            trailColor: `var(--text)`,
+            trailColor: "var(--text)",
             pathTransitionDuration: 0.05,
           })}
         >
