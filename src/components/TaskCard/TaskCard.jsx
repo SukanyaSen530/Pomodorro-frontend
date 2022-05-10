@@ -12,18 +12,27 @@ const TaskCard = ({ id, index, task, handleUpdate, handleDelete }) => {
       {(provided) => (
         <Link
           to={`/tasks/${id}`}
-          className={`task-card task-card__details flex flex-space-between badge ${
+          className={`task-card flex flex-space-between badge ${
             isDone ? "done" : ""
           }`}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <p>{title}</p>
+          <div className="task-card__text-container">
+            <p className="task-card__title">{title}</p>
+
+            {tags.map((tag, index) => (
+              <span className="task-card__tag" key={index}>
+                {tag}
+              </span>
+            ))}
+          </div>
 
           {tags?.length !== 0 ? (
-            <span className="badge-count secondaryDark">{tags?.length}</span>
+            <span className="badge-count danger">{tags?.length}</span>
           ) : null}
+
           <div>
             <i
               className={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
