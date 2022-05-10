@@ -20,7 +20,7 @@
       height: 50vh;
 
       @include respond(phone) {
-         height: 40vh;
+        height: 40vh;
       }
     }
   }
@@ -30,7 +30,7 @@
     right: 4rem;
     top: 4rem;
 
-    span{
+    span {
       font-size: 2rem;
     }
   }
@@ -44,10 +44,94 @@
   bottom: 0;
   left: 0;
   right: 0;
-   background-image: linear-gradient(to left bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #ac9ce2, #bd9fe2, #cda2e1, #f4a0cc, #ffa5b0, #ffb395, #ffc785);
+  background-image: linear-gradient(
+    to left bottom,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #ac9ce2,
+    #bd9fe2,
+    #cda2e1,
+    #f4a0cc,
+    #ffa5b0,
+    #ffb395,
+    #ffc785
+  );
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
   opacity: 0.9;
 }
 
+.features-section {
+  width: 80vw;
+  margin: 5rem auto 1rem;
+
+  &__about {
+    text-align: left;
+
+    &__list {
+      font-size: 1.7rem;
+      list-style-type: decimal;
+      list-style-position: inside;
+      text-align: justify;
+
+      li {
+        line-height: 2.5rem;
+        margin-bottom: 1rem;
+
+        strong {
+          font-weight: 600;
+          color: rgb(81, 81, 81);
+        }
+      }
+    }
+  }
+
+  &__details {
+    width: 50%;
+    margin: 0 auto;
+
+    &__card {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 2rem;
+      gap: 3rem;
+
+      &.flex-1 {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
+      &.flex-0 {
+        text-align: left;
+      }
+
+      img {
+        height: 10rem;
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--text);
+  padding: 1rem;
+
+  &__content {
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  &__links {
+    font-size: 3rem;
+
+    a {
+      color: var(--text);
+      margin-left: 2rem;
+    }
+  }
+}

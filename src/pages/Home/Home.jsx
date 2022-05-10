@@ -33,19 +33,25 @@ const Home = () => {
 
       <section className="features-section">
         <div className="features-section__about">
-          <h3 className="h3">What is pomodoro technique?</h3>
-          <ol>
+          <h3 className="h3 b-margin-sm">What is pomodoro technique?</h3>
+          <ol className="features-section__about__list">
             {pomodoroDetails.map((step, index) => (
               <li key={index}>
-                <span>{step.title} </span> : {step.description}
+                <strong>{step.title} </strong> : {step.description}
               </li>
             ))}
           </ol>
         </div>
 
         <div className="features-section__details">
+          <h3 className="h3 t-margin-lg b-margin-sm"> Features </h3>
           {featuresData.map(({ title, description, imgUrl }, index) => (
-            <div className={`flex flex-center-y flex-${index % 2}`} key={index}>
+            <div
+              className={`features-section__details__card b-margin-md flex flex-center-y flex-${
+                index % 2
+              }`}
+              key={index}
+            >
               <div className="flex-1">
                 <h4 className="h4">{title}</h4>
                 <p>{description}</p>
@@ -56,19 +62,21 @@ const Home = () => {
         </div>
       </section>
 
-      <footer>
-        <p>Made with ❤️ Sukanya Sen</p>
+      <footer className="footer">
+        <div className="footer__content flex flex-center-y gap-md flex-space-between">
+          <p className="flex-1">Made with ❤️ Sukanya Sen</p>
 
-        <div className="flex gap-sm">
-          <a href="#here">
-            <i className="fa-brands fa-github"></i>
-          </a>
-          <a href="#here">
-            <i className="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="#here">
-            <i className="fa-brands fa-twitter-square"></i>
-          </a>
+          <div className="flex gap-sm footer__links">
+            <a href="#here">
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a href="#here1">
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="#here2">
+              <i className="fa-brands fa-twitter-square"></i>
+            </a>
+          </div>
         </div>
       </footer>
 
