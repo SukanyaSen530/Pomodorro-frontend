@@ -151,7 +151,7 @@ const Tasks = () => {
       <div className="tasks-section__tasks__container flex">
         <Droppable
           droppableId="incomplete_board"
-          // isDropDisabled={checkLoading}
+          isDropDisabled={checkLoading}
           key="b1"
         >
           {(provided) => (
@@ -175,7 +175,7 @@ const Tasks = () => {
 
         <Droppable
           droppableId="completed_board"
-          // isDropDisabled={checkLoading}
+          isDropDisabled={checkLoading}
           key="b2"
         >
           {(provided) => (
