@@ -1,3 +1,5 @@
+@import "../../sass/global";
+
 .task-card {
   margin: 2rem 0;
   font-size: 3rem;
@@ -12,7 +14,6 @@
   align-items: center;
 
   &__text-container{
-    flex: 1;
     width: 200px;
   }
 
@@ -22,6 +23,13 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &__tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
   }
 
   &__tag {
@@ -35,6 +43,12 @@
 
   &.done &__title {
     text-decoration: line-through;
+  }
+
+  &__actions{
+    @include respond(phone){
+      flex-direction: column;
+    }
   }
 
   &__icon {

@@ -1,3 +1,5 @@
+@import "../../sass/global";
+
 .timer {
   width: 100%;
   text-align: center;
@@ -11,9 +13,9 @@
 
     &__option {
       padding: 1rem;
-      margin: 0 5px; 
+      margin: 0 5px;
       font-size: 1.5rem;
-      min-width: 15rem;
+      min-width: 10rem;
       border-radius: 25px;
       border: none;
       cursor: pointer;
@@ -23,6 +25,10 @@
       transition: 0.3s ease-in-out;
       background: linear-gradient(-180deg, #d2b7e5, #b185db);
       box-shadow: rgba(0, 0, 0, 0.6) 0 5px 10px;
+
+      @include respond(phone) {
+        min-width: 70px;
+      }
 
       &:disabled,
       &[disabled] {
@@ -40,7 +46,7 @@
       }
 
       &.active:enabled {
-         background: linear-gradient(-180deg, #be8eeb, #6247aa);
+        background: linear-gradient(-180deg, #be8eeb, #6247aa);
         color: whitesmoke;
       }
     }
@@ -49,12 +55,12 @@
   &__clock {
     width: fit-content;
     margin: 3rem auto;
-    
-     p{
-       font-size: 2rem;
-       color: var(--text);
-       font-weight: 500;
-     }
+
+    p {
+      font-size: 2rem;
+      color: var(--text);
+      font-weight: 500;
+    }
   }
 
   &__controls {

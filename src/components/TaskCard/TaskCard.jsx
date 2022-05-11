@@ -22,18 +22,20 @@ const TaskCard = ({ id, index, task, handleUpdate, handleDelete }) => {
           <div className="task-card__text-container">
             <p className="task-card__title">{title}</p>
 
-            {tags.map((tag, index) => (
-              <span className="task-card__tag" key={index}>
-                {tag}
-              </span>
-            ))}
+            <div className="task-card__tags">
+              {tags.map((tag, index) => (
+                <span className="task-card__tag" key={index}>
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
           {tags?.length !== 0 ? (
             <span className="badge-count danger">{tags?.length}</span>
           ) : null}
 
-          <div>
+          <div className="task-card__actions flex">
             <i
               className={`fa-solid fa-square task-card__icon task-card__icon--${priority}`}
             ></i>

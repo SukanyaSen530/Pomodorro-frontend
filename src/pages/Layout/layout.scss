@@ -3,8 +3,15 @@
 .layout {
   min-height: 100vh;
   padding: 1rem 5rem 3rem;
+  
+  @include respond(phone){
+    padding: 2rem;
+    padding-top: 6rem;
+  }
+
+
   text-align: left;
-  background-image: linear-gradient(
+  background: linear-gradient(
     to left bottom,
     #d16ba5,
     #c777b9,
@@ -57,6 +64,11 @@
     right: 5rem;
     top: 4rem;
     z-index: 10;
+
+    @include respond(phone){
+      right: 2rem;
+      top: 2rem;
+    }
 
     &__menu-trigger {
       text-decoration: none;
