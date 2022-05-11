@@ -3,6 +3,10 @@
 .task-details {
   color: var(--text);
 
+  @include respond(phone) {
+    flex-direction: column;
+  }
+
   & > * {
     flex: 1;
   }
@@ -50,6 +54,12 @@
 
     &__title {
       text-transform: capitalize;
+      word-break: break-word;
+
+      @include respond(phone) {
+        font-size: 2rem;
+        margin: 3rem 0;
+      }
     }
 
     &__description {
