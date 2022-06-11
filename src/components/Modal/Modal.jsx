@@ -7,10 +7,10 @@ const Modal = ({ open, onClose, children }) => {
   if (!open) return null;
 
   return reactDom.createPortal(
-    <article className="modal-overlay">
-      <div className="modal-content">
+    <article className="modal__overlay">
+      <div className="modal__content">
         {children}
-        <IoClose className="modal-content__close-btn" onClick={onClose} />
+        <IoClose className="modal__content__close-btn" onClick={onClose} />
       </div>
     </article>,
     document.getElementById("modal-root")

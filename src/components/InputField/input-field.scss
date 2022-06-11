@@ -1,58 +1,15 @@
 @import "../../sass/global";
 
-.input-group-new {
-  width: 100%;
-  margin: 1rem auto 2rem;
-  display: block;
-  position: relative;
-  text-transform: capitalize;
+.input-group {
+  margin-bottom: 1rem;
 
-  &__label{
-    margin: 0 1rem ;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: gray;
-  }
-
-  &__select{
+  &__label {
     font-family: inherit;
-    padding: 1rem;
-    width: 100%;
   }
 
-  &__input {
+   &__input {
     font-family: inherit;
-    padding: 1rem;
-    color: var(--color-black);
-    font-size: 1.5rem;
-    width: 100%;
-    transition: 0.4s all ease;
-    border: 0;
-    border-bottom: 1px solid #ccc;
-    text-align: justify;
-    line-height: 2rem;
-
-    &:focus {
-      outline: 0;
-    }
   }
-
-  &__input ~ &__focus-border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background-color: var(--default);
-    transition: 0.4s;
-  }
-
-  &__input:focus ~ &__focus-border {
-    width: 100%;
-    transition: 0.4s;
-  }
-
- 
 
   &__show-pass {
     position: absolute;

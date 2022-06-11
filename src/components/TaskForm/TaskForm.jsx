@@ -34,11 +34,11 @@ const TaskForm = ({
           name="description"
           rows={4}
         />
-        <div className="input-group-new">
-          <label className="input-group-new__label">Select Priority</label>
+        <div className="input-group">
+          <label className="input-group__label">Select Priority</label>
           <select
             onChange={handleChange}
-            className="input-group-new__input"
+            className="input-group__input"
             name="priority"
             value={taskData.priority}
           >
@@ -48,7 +48,7 @@ const TaskForm = ({
               </option>
             ))}
           </select>
-          <span className="input-group-new__focus-border"></span>
+          <span className="input-group__focus-border"></span>
         </div>
         <InputField
           type="number"

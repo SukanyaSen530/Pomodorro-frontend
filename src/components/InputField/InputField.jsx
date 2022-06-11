@@ -21,7 +21,7 @@ function InputField({
       <textarea
         {...other}
         placeholder={labelName}
-        className="input-group-new__input"
+        className="input-group__input"
         name={name}
         value={value}
       />
@@ -31,7 +31,7 @@ function InputField({
       <input
         {...other}
         type={type === "password" ? (showPass ? "text" : "password") : type}
-        className="input-group-new__input"
+        className="input-group__input"
         placeholder={placeholder ? placeholder : labelName}
         value={value}
         name={name}
@@ -40,18 +40,18 @@ function InputField({
   }
 
   return (
-    <div className="input-group-new">
-      <label className="input-group-new__label" htmlFor={name}>
+    <div className="input-group">
+      <label className="input-group__label" htmlFor={name}>
         {labelName}
       </label>
       {content}
 
-      <span className="input-group-new__focus-border"></span>
+      <span className="input-group__focus-border"></span>
 
       {type === "password" ? (
         <span
           onClick={() => setShowPass((val) => !val)}
-          className="input-group-new__show-pass"
+          className="input-group__show-pass"
         >
           {showPass ? <AiFillEye /> : <AiFillEyeInvisible />}
         </span>

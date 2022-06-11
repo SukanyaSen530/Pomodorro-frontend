@@ -1,54 +1,54 @@
 @import "../../sass/global";
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(#303030, 0.6);
-  backdrop-filter: blur(1px);
-  z-index: 100;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  position: fixed;
-  width: 30%;
-  max-width: 45rem;
-  padding: 3rem;
-  background: var(--color-white);
-  z-index: 100;
-  border-radius: var(--border-radius-md);
-  cursor: auto;
-  overflow: hidden;
-
-
-  @include respond(tab-port) {
-    width: 80%;
+.modal {
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(#303030, 0.6);
+    backdrop-filter: blur(1px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  @include respond(phone) {
-    width: 90%;
-  }
+  &__content {
+    position: fixed;
+    width: 30%;
+    max-width: 45rem;
+    padding: 3rem;
+    background: var(--color-white);
+    z-index: 100;
+    border-radius: var(--border-radius-md);
+    cursor: auto;
+    overflow: hidden;
 
-  &__close-btn {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    height: 3rem;
-    width: 3rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--color-black);
-    transition: all 0.4s;
+    @include respond(tab-port) {
+      width: 80%;
+    }
 
-    &:hover {
-      color: var(--defaultDark);
-      transform: scale(1.2);
+    @include respond(phone) {
+      width: 90%;
+    }
+
+    &__close-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      height: 3rem;
+      width: 3rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--color-black);
+      transition: all 0.4s;
+
+      &:hover {
+        color: var(--defaultDark);
+        transform: scale(1.2);
+      }
     }
   }
 }
