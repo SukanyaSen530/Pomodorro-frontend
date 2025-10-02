@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 import "./home.scss";
 import { CSSTransition } from "react-transition-group";
 
@@ -10,6 +10,7 @@ import { pomodoroDetails, featuresData } from "./data";
 const Home = () => {
   const [showAuth, setShowAuth] = useState(false);
   const handleAuthForm = () => setShowAuth((val) => !val);
+  const ref = useRef(null);
 
   return (
     <>
@@ -85,8 +86,9 @@ const Home = () => {
         timeout={300}
         classNames="modal"
         unmountOnExit
+        nodeRef={ref}
       >
-        <AuthModal open={showAuth} onClose={handleAuthForm} />
+        <AuthModal open={showAuth} onClose={handleAuthForm} ref={ref} />
       </CSSTransition>
     </>
   );

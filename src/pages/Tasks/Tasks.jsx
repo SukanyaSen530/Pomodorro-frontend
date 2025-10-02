@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import "./tasks.scss";
@@ -41,6 +41,8 @@ const Tasks = () => {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [inCompletedTasks, setIncompletedTasks] = useState([]);
   const [checkLoading, setCheckLoading] = useState(false);
+
+  const ref = useRef(null);
 
   useEffect(() => {
     setCompletedTasks(tasks.filter((task) => task.isDone === true));
@@ -239,6 +241,7 @@ const Tasks = () => {
           timeout={300}
           classNames="modal"
           unmountOnExit
+          nodeRef={ref}
         >
           <TaskForm
             open={showForm}
@@ -247,6 +250,7 @@ const Tasks = () => {
             taskData={taskData}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            ref={ref}
           />
         </CSSTransition>
       </Layout>

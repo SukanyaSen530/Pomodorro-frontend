@@ -1,50 +1,56 @@
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { Home, TaskDetails, Tasks, Overview } from "../pages";
-
 import PreventedRoutes from "./PreventedRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
+import App from "../App";
 
-const AllRoutes = () => {
-  return (
-    <Routes>
-      {/* Prevented Route */}
-      <Route
-        path="/"
-        element={
+const router = createBrowserRouter([
+  {
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: (
           <PreventedRoutes>
             <Home />
           </PreventedRoutes>
-        }
-      />
-      {/* Protected Routes */}
-      <Route
-        path="/tasks"
-        element={
+        ),
+      },
+      {
+        path: "/tasks",
+        element: (
           <ProtectedRoutes>
             <Tasks />
           </ProtectedRoutes>
-        }
-      />
-      <Route
-        path="/tasks/:taskId"
-        element={
+        ),
+      },
+      {
+        path: "/tasks/:taskId",
+        element: (
           <ProtectedRoutes>
             <TaskDetails />
           </ProtectedRoutes>
-        }
-      />
-      <Route
-        path="/stats"
-        element={
+        ),
+      },
+      {
+        path: "/stats",
+        element: (
           <ProtectedRoutes>
             <Overview />
           </ProtectedRoutes>
-        }
-      />
-      <Route path="*" element={<>Not Avaialble!</>} />
-    </Routes>
-  );
-};
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <>
+            <p>Not Available!</p>
+          </>
+        ),
+      },
+    ],
+  },
+]);
 
-export default AllRoutes;
+export default router;

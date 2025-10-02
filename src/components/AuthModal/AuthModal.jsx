@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 
 import { Modal, InputField } from "..";
-import { useAuthContext } from "../../context";
-
-import { loginUser, registerUser } from "../../services";
+import { useAuthContext } from "@/context";
+import { loginUser, registerUser } from "@/services";
 
 import "./auth-modal.scss";
 
-const AuthModal = ({ open, onClose }) => {
+const AuthModal = ({ open, onClose, ref }) => {
   const {
     authState: { loading },
     authDispatch,
@@ -160,7 +159,7 @@ const AuthModal = ({ open, onClose }) => {
   }
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} ref={ref}>
       <div className="auth-section flex flex-col">
         <div className="auth-section__toggler flex">
           <button

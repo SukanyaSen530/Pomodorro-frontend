@@ -1,14 +1,11 @@
-@import "../../sass/global";
-
 .layout {
   min-height: 100vh;
   padding: 1rem 5rem 3rem;
-  
-  @include respond(phone){
+
+  @include respond(phone) {
     padding: 2rem;
     padding-top: 6rem;
   }
-
 
   text-align: left;
   background: linear-gradient(
@@ -65,7 +62,7 @@
     top: 4rem;
     z-index: 10;
 
-    @include respond(phone){
+    @include respond(phone) {
       right: 2rem;
       top: 2rem;
     }

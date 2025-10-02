@@ -11,9 +11,10 @@ const TaskForm = ({
   taskData,
   handleChange,
   handleSubmit,
+  ref,
 }) => {
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} ref={ref}>
       <form onSubmit={handleSubmit} className="task-form">
         <InputField
           type="text"
