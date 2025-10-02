@@ -106,8 +106,6 @@ export const deleteTask = async (id, dispatch) => {
 export const toggleTaskCompletion = async (id, dispatch, setCheckLoading) => {
   const config = getConfig();
 
-  console.log("Called", id);
-
   setCheckLoading(true);
   try {
     const { data, status } = await axios.put(

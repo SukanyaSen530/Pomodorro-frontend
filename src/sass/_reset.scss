@@ -1,24 +1,32 @@
-@import "./mixins";
-
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-html {
-  font-size: 62.5%; /* 10px */
-
-  @include respond(tab-land) {
-    font-size: 56.25%;  /* 9px */
+@mixin respond($breakpoint) {
+  @if $breakpoint == xs-phone {
+    @media only screen and (max-width: 30em) {
+      @content;
+    }
   }
 
-  @include respond(tab-port) {
-    font-size: 50%;  /* 8px */
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
   }
 
-  box-sizing: border-box;
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
 }
-

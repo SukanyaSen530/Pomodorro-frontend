@@ -1,7 +1,7 @@
-const { REACT_APP_APP_MODE, REACT_APP_BASE_URL, REACT_APP_DEV_URL } =
-  process.env;
-
-const api = REACT_APP_APP_MODE === "" ? REACT_APP_DEV_URL : REACT_APP_BASE_URL;
+const api =
+  import.meta.env.VITE_APP_MODE === "dev"
+    ? import.meta.env.VITE_DEV_URL
+    : import.meta.env.VITE_BASE_URL;
 
 console.log(api);
 

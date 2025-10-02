@@ -1,5 +1,3 @@
-@import "../../sass/global";
-
 .modal {
   &__overlay {
     position: fixed;
@@ -50,5 +48,49 @@
         transform: scale(1.2);
       }
     }
+  }
+
+  /* ---------------- CSSTransition Animations ---------------- */
+
+  /* Overlay fade */
+  &-enter .modal__overlay {
+    opacity: 0;
+  }
+
+  &-enter-active .modal__overlay {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  &-exit .modal__overlay {
+    opacity: 1;
+  }
+
+  &-exit-active .modal__overlay {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  /* Content scale + fade */
+  &-enter .modal__content {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  &-enter-active .modal__content {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 300ms ease-in-out;
+  }
+
+  &-exit .modal__content {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &-exit-active .modal__content {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 300ms ease-in-out;
   }
 }
